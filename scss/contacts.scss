@@ -1,0 +1,68 @@
+//==========================================ПАРАГРАФ с ТЕКСТОМ======================
+.howToOrder {
+	a {
+		text-decoration: underline;
+		&:hover {
+			text-decoration: none;
+		}
+	}
+}
+
+.contacts {
+	/* .contacts__title */
+	&__title {
+		margin-bottom: 40px;
+	}
+	/* .contacts__sub-title */
+	&__subtitle {
+		margin-bottom: 40px;
+	}
+	/* .contacts__row */
+	&__row {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		margin-bottom: 100px;
+	}
+	/* .contacts__link */
+	&__link {
+	}
+	/* .contacts__item */
+	&__item {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	/* .contacts__image */
+	&__image {
+		position: relative;
+		top: 0;
+		left: 0;
+		transition: all 0.1s;
+		&:hover {
+			transition: all 0.1s;
+			top: -3px;
+			opacity: 0.8;
+		}
+	}
+	/* .contacts__body */
+	&__body {
+		text-align: center;
+	}
+	/* .contacts__item-title */
+	&__item-title {
+		font-weight: bold;
+		margin-bottom: 10px;
+	}
+	/* .contacts__text */
+	&__text {
+		text-align: center;
+		text-decoration: underline;
+		transition: all 0.1s;
+		&:hover {
+			transition: all 0.1s;
+			text-decoration: none;
+			opacity: 0.8;
+		}
+	}
+}

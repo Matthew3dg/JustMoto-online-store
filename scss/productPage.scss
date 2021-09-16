@@ -1,0 +1,101 @@
+//===================================ВЕСЬ ПРОДУКТ(с названием товара и двумя колонками)======
+.product {
+	background: #fff;
+	padding: 40px 50px 50px 50px;
+	margin-bottom: 85px;
+	border-radius: 5px;
+	// .product__title
+	&__title {
+		margin-bottom: 25px;
+	}
+
+	// .product__row
+	&__row {
+		display: flex;
+	}
+
+	// .product__image===================(ПЕРВАЯ КОЛОНКА)================================
+	&__image {
+		margin-right: 5px;
+		flex: 0 1 40%;
+		img {
+			max-width: 100%;
+		}
+	}
+
+	// .product__body==========КАК ЭЛЕМЕНТ ВСЕГО ПРОДУКТА(ВТОРАЯ КОЛОНКА)================
+	&__body {
+		flex: 0 1 60%;
+	}
+}
+
+//==============================ОСНОВНАЯ ЧАСТЬ СТРАНИЦЫ======================================
+.productBody {
+	// .productBody__headerRow==========ШАПКА С ЦЕНОЙ СЧЕТЧИКОМ И КНОПКОЙ "В КОРЗИНУ"========
+	&__headerRow {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		flex-wrap: wrap;
+		margin-bottom: 40px;
+	}
+
+	// .productBody__headerColumn======================КОЛОНКА ШАПКИ=========================
+	&__headerColumn {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	// .productBody__price
+	&__price {
+		//font-size: 14px;
+		//line-height: 16px;
+		//letter-spacing: 0.03em;
+		color: #33b049;
+	}
+
+	// .productBody__priceLable
+	&__priceLable {
+	}
+
+	// .productBody__counter
+	&__counter {
+	}
+
+	// .productBody__totalPrice
+	&__totalPrice {
+		//font-size: 14px;
+		//line-height: 16px;
+		//letter-spacing: 0.03em;
+		color: #33b049;
+	}
+
+	// .productBody__button
+	&__button {
+	}
+
+	// .productBody__title==========ЗАГОЛОВОК "ОПИСАНИЕ", "МАТЕРИАЛЫ" И ДР.==========
+	&__title {
+		margin-bottom: 15px;
+	}
+
+	// .productBody__descriptionText
+	&__descriptionText {
+		color: #33b049;
+		//font-weight: 300;
+		margin-bottom: 25px;
+	}
+
+	// .productBody__list
+	&__list {
+		color: #33b049;
+		//font-weight: 300;
+		margin-bottom: 25px;
+	}
+
+	// .productBody__listItem
+	&__listItem {
+		list-style: inside;
+	}
+}

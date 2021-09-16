@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap"
+			rel="stylesheet"
+		/>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Интернет-магазин Just Moto</title>
+	</head>
+	<body>
+		<div class="wrapper">
+			<header class="menu">
+				<div class="container">
+					<nav class="menu__wrapper">
+						<a href="index.html" class="menu__logo"
+							><img src="img/menu/logo.svg" alt="logo"
+						/></a>
+						<ul class="menu__list">
+							<li class="menu__item">
+								<a href="catalog.html">Каталог</a>
+							</li>
+							<li class="menu__item">
+								<a href="contacts.html">Контакты</a>
+							</li>
+							<li class="menu__item">
+								<a href="howToOrder.html">Как заказать</a>
+							</li>
+							<li class="menu__item">
+								<a href="about.html">О компании</a>
+							</li>
+						</ul>
+						<ul class="menu__right">
+							<li class="menu__right-item">
+								<a href="tel:+79002351721">+7 900 235 17 21</a>
+							</li>
+							<li class="menu__right-item">
+								<a href="cart.html"
+									><img src="img/menu/cart.svg" alt="cart" />
+								</a>
+							</li>
+							<li class="menu__right-item">
+								<a href="entry.html">
+									<img
+										src="img/menu/personalAccount.svg"
+										alt="personalAccount"
+									/>
+								</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</header>
+			<div class="content">
+				<div class="header">
+					<h1 class="header__title title">Каталог</h1>
+				</div>
+				<div class="catalog">
+					<div class="container">
+						<div class="catalog__body">
+							<aside class="catalog__sidebar sidebar">
+								<div class="sidebar__categoryTitle categoryTitle">
+									Категории
+								</div>
+								<ul class="sidebar__categoryList">
+									<li class="sidebar__categoryItem helmets">Мотошлемы</li>
+									<li class="sidebar__categoryItem clothes">Мотоодежда</li>
+									<li class="sidebar__categoryItem boots">Мотоботинки</li>
+									<li class="sidebar__categoryItem accessories">Аксессуары</li>
+								</ul>
+								<div class="sidebar__categoryTitle categoryTitle">Бренд</div>
+								<form action="#" method="GET" class="sidebar__filter">
+									<p class="sidebar__brandName">
+										<input
+											type="checkbox"
+											name="brand1"
+											value="true"
+											id=""
+										/>Rebelhorn
+									</p>
+									<p class="sidebar__brandName">
+										<input
+											type="checkbox"
+											name="brand2"
+											value="true"
+											id=""
+										/>ixs
+									</p>
+									<p class="sidebar__brandName">
+										<input
+											type="checkbox"
+											name="brand3"
+											value="true"
+											id=""
+										/>hjc
+									</p>
+									<p class="sidebar__brandName">
+										<input
+											type="checkbox"
+											name="brand4"
+											value="true"
+											id=""
+										/>Alpinestars
+									</p>
+									<!--<button class="sidebar__filterSubmit btn" type="submit">
+										Применить
+									</button>-->
+									<button class="sidebar__filterReset btn" type="reset">
+										Очистить
+									</button>
+								</form>
+							</aside>
+							<main class="catalog__mainContent">
+								<div class="catalog__sort">
+									<div class="catalog__sortLabel">Сортировать по:</div>
+									<form action="#" method="get">
+										<select name="sort" id="">
+											<option value="increment">Возрастанию цены</option>
+											<option value="decrement">Убыванию цены</option>
+										</select>
+									</form>
+								</div>
+								<div class="catalog__wrapper">
+									<div class="catalog__cards">
+										<div class="catalog__cardRow">
+											<a href="">
+												<div class="catalog__card card">
+													<div class="card__lable card__lable_hit cardLable">
+														Хит продаж
+													</div>
+													<div class="card__photo">
+														<img src="img/main/товар1.jpg" alt="card1" />
+													</div>
+													<div class="card__text">Мотошлем HJC i70 белый</div>
+													<ul class="card__priceRow">
+														<li class="card__price">11 600 руб.</li>
+														<li class="card__quantity">Много на складе</li>
+													</ul>
+													<a href=""
+														><div class="card__button btn">В корзину</div></a
+													>
+												</div>
+											</a>
+										</div>
+										<div class="catalog__cardRow">
+											<a href="">
+												<div class="catalog__card card">
+													<div class="card__lable card__lable_hit cardLable">
+														Хит продаж
+													</div>
+													<div class="card__photo">
+														<img src="img/main/товар2.jpg" alt="card2" />
+													</div>
+													<div class="card__text">
+														Куртка текстильная Rebelhorn Borg
+													</div>
+													<ul class="card__priceRow">
+														<li class="card__price">18 500 руб.</li>
+														<li class="card__quantity">Много на складе</li>
+													</ul>
+													<a href=""
+														><div class="card__button btn">В корзину</div></a
+													>
+												</div>
+											</a>
+										</div>
+										<div class="catalog__cardRow">
+											<a href="productPage1.html">
+												<div class="catalog__card card">
+													<div class="card__lable card__lable_hit cardLable">
+														Хит продаж
+													</div>
+													<div class="card__photo">
+														<img src="img/main/товар3.jpg" alt="card3" />
+													</div>
+													<div class="card__text">
+														Мотоштаны Rebelhorn CubbyIII
+													</div>
+													<ul class="card__priceRow">
+														<li class="card__price">13 200 руб.</li>
+														<li class="card__quantity">Много на складе</li>
+													</ul>
+													<a href=""
+														><div class="card__button btn">В корзину</div></a
+													>
+												</div>
+											</a>
+										</div>
+										<div class="catalog__cardRow">
+											<a href="">
+												<div class="catalog__card card">
+													<div class="card__lable card__lable_hit cardLable">
+														Хит продаж
+													</div>
+													<div class="card__photo">
+														<img src="img/main/товар1.jpg" alt="card1" />
+													</div>
+													<div class="card__text">Мотошлем HJC i70 белый</div>
+													<ul class="card__priceRow">
+														<li class="card__price">11 600 руб.</li>
+														<li class="card__quantity">Много на складе</li>
+													</ul>
+													<a href=""
+														><div class="card__button btn">В корзину</div></a
+													>
+												</div>
+											</a>
+										</div>
+										<div class="catalog__cardRow">
+											<a href="">
+												<div class="catalog__card card">
+													<div class="card__lable card__lable_hit cardLable">
+														Хит продаж
+													</div>
+													<div class="card__photo">
+														<img src="img/main/товар2.jpg" alt="card2" />
+													</div>
+													<div class="card__text">
+														Куртка текстильная Rebelhorn Borg
+													</div>
+													<ul class="card__priceRow">
+														<li class="card__price">18 500 руб.</li>
+														<li class="card__quantity">Много на складе</li>
+													</ul>
+													<a href=""
+														><div class="card__button btn">В корзину</div></a
+													>
+												</div>
+											</a>
+										</div>
+										<div class="catalog__cardRow">
+											<a href="">
+												<div class="catalog__card card">
+													<div class="card__lable card__lable_hit cardLable">
+														Хит продаж
+													</div>
+													<div class="card__photo">
+														<img src="img/main/товар3.jpg" alt="card3" />
+													</div>
+													<div class="card__text">
+														Мотоштаны Rebelhorn CubbyIII
+													</div>
+													<ul class="card__priceRow">
+														<li class="card__price">13 200 руб.</li>
+														<li class="card__quantity">Много на складе</li>
+													</ul>
+													<a href=""
+														><div class="card__button btn">В корзину</div></a
+													>
+												</div>
+											</a>
+										</div>
+									</div>
+									<a href="">
+										<div class="catalog__showMoreBtn btn">Показать ещё</div>
+									</a>
+								</div>
+							</main>
+						</div>
+					</div>
+				</div>
+			</div>
+			<footer class="footer">
+				<div class="container">
+					<div class="footer__row">
+						<div class="footer__text">© 2021 Все права защищены</div>
+						<div class="footer__contacts">
+							<a href="tel:+79002351721"
+								><div class="footer__contact">
+									<img src="img/footer/phone.svg" alt="phone" /></div
+							></a>
+							<a href="https://t.me/Matthew3dg"
+								><div class="footer__contact">
+									<img src="img/footer/telegram.svg" alt="telegram" /></div
+							></a>
+							<a href="https://vk.com/matthew3dg"
+								><div class="footer__contact">
+									<img src="img/footer/vk.svg" alt="vkontakte" /></div
+							></a>
+							<a href="https://wa.me/79002351721"
+								><div class="footer__contact">
+									<img src="img/footer/whatsapp.svg" alt="WhatsApp" /></div
+							></a>
+						</div>
+						<a href="#"
+							><div class="footer__up">
+								<img src="img/footer/up.svg" alt="arrowUp" /></div
+						></a>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</body>
+</html>

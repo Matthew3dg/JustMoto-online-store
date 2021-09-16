@@ -1,0 +1,17 @@
+//==========================================ПАРАГРАФ с ТЕКСТОМ======================
+.how {
+	// .howToOrder__title
+
+	&__title {
+		margin-bottom: 25px;
+	}
+
+	// .howToOrder__text
+
+	&__text {
+		margin-bottom: 25px;
+		&:last-child {
+			margin-bottom: 50px;
+		}
+	}
+}

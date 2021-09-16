@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap"
+			rel="stylesheet"
+		/>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Интернет-магазин Just Moto</title>
+	</head>
+	<body>
+		<div class="wrapper">
+			<header class="menu">
+				<div class="container">
+					<nav class="menu__wrapper">
+						<a href="index.html" class="menu__logo"
+							><img src="img/menu/logo.svg" alt="logo"
+						/></a>
+						<ul class="menu__list">
+							<li class="menu__item">
+								<a href="catalog.html">Каталог</a>
+							</li>
+							<li class="menu__item">
+								<a href="contacts.html">Контакты</a>
+							</li>
+							<li class="menu__item">
+								<a href="howToOrder.html">Как заказать</a>
+							</li>
+							<li class="menu__item">
+								<a href="about.html">О компании</a>
+							</li>
+						</ul>
+						<ul class="menu__right">
+							<li class="menu__right-item">
+								<a href="tel:+79002351721">+7 900 235 17 21</a>
+							</li>
+							<li class="menu__right-item">
+								<a href="cart.html"
+									><img src="img/menu/cart.svg" alt="cart" />
+								</a>
+							</li>
+							<li class="menu__right-item">
+								<a href="entry.html">
+									<img
+										src="img/menu/personalAccount.svg"
+										alt="personalAccount"
+									/>
+								</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</header>
+			<div class="content">
+				<div class="header">
+					<h1 class="header__title title">Оформление заказа</h1>
+				</div>
+				<div class="container">
+					<form class="checkout" action="#" method="GET">
+						<div class="checkout__deliveryAndPaymentRow">
+							<div class="checkout__deliveryCol">
+								<h2 class="checkout__title categoryTitle">Способ доставки</h2>
+								<p class="checkout__radio">
+									<input type="radio" name="deliveryMethod" value="courier" />
+									Доставка курьером
+								</p>
+								<div class="checkout__freeLabel priceLable">бесплатно</div>
+								<div class="checkout__caption priceLable">
+									Доставка в течении дня в удобное для вас время.
+								</div>
+								<p class="checkout__radio">
+									<input
+										checked
+										type="radio"
+										name="deliveryMethod"
+										value="pickup"
+									/>
+									Самовывоз
+								</p>
+								<div class="checkout__freeLabel priceLable">бесплатно</div>
+								<div class="checkout__caption priceLable">
+									Вы можете самостоятельно забрать заказ из пункта выдачи.
+								</div>
+							</div>
+							<div class="checkout__paymentCol">
+								<h2 class="checkout__title categoryTitle">Способ оплаты</h2>
+								<p class="checkout__radio">
+									<input
+										type="radio"
+										name="paymentMethod"
+										value="online"
+									/>Банковской картой онлайн
+								</p>
+								<p class="checkout__radio">
+									<input
+										type="radio"
+										name="paymentMethod"
+										value="online"
+									/>Банковской картой при получении
+								</p>
+								<p class="checkout__radio">
+									<input
+										checked
+										type="radio"
+										name="paymentMethod"
+										value="online"
+									/>Наличными при получении
+								</p>
+							</div>
+						</div>
+						<div class="checkout__buyerData buyerData">
+							<h2 class="checkout__title categoryTitle">Данные покупателя</h2>
+							<p class="buyerData__field">
+								Фамилия:<input type="text" name="surname" value="surname" />
+							</p>
+							<p class="buyerData__field">
+								Имя:<input type="text" name="name" value="name" />
+							</p>
+							<p class="buyerData__field">
+								Отчество:<input
+									type="text"
+									name="middleName"
+									value="middleName"
+								/>
+							</p>
+							<p class="buyerData__field">
+								E-mail:<input type="email" name="email" value="email" />
+							</p>
+							<p class="buyerData__field">
+								Телефон:<input type="tel" name="tel" value="tel" />
+							</p>
+							<p class="buyerData__field">
+								Адрес:<input type="text" name="address" value="address" />
+							</p>
+							<p class="buyerData__field">
+								Комментарий:<input type="text" name="comment" value="comment" />
+							</p>
+							<p class="checkout__radio">
+								<input
+									checked
+									type="checkbox"
+									name="dataProcessing"
+									value="agree"
+								/>
+								Я даю согласие на обработку персональных данных
+							</p>
+						</div>
+						<button class="checkout__button btn" type="submit">
+							Оформить заказ
+						</button>
+						<button class="checkout__button btn btn_clear" type="reset">
+							Очистить данные
+						</button>
+					</form>
+				</div>
+			</div>
+			<footer class="footer footer_ivoryColor">
+				<div class="container">
+					<div class="footer__row">
+						<div class="footer__text">© 2021 Все права защищены</div>
+						<div class="footer__contacts">
+							<a href="tel:+79002351721"
+								><div class="footer__contact">
+									<img src="img/footer/phone.svg" alt="phone" /></div
+							></a>
+							<a href="https://t.me/Matthew3dg"
+								><div class="footer__contact">
+									<img src="img/footer/telegram.svg" alt="telegram" /></div
+							></a>
+							<a href="https://vk.com/matthew3dg"
+								><div class="footer__contact">
+									<img src="img/footer/vk.svg" alt="vkontakte" /></div
+							></a>
+							<a href="https://wa.me/79002351721"
+								><div class="footer__contact">
+									<img src="img/footer/whatsapp.svg" alt="WhatsApp" /></div
+							></a>
+						</div>
+						<a href="#"
+							><div class="footer__up">
+								<img src="img/footer/up.svg" alt="arrowUp" /></div
+						></a>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</body>
+</html>

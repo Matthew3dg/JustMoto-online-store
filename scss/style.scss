@@ -1,0 +1,589 @@
+// Подключение обнуляющих стилей
+@import 'nullstyle.scss';
+
+// Подключение стилей других страниц
+@import 'catalog.scss';
+@import 'howToOrder.scss';
+@import 'contacts.scss';
+@import 'about.scss';
+@import 'productPage.scss';
+@import 'cart.scss';
+@import 'checkout.scss';
+@import 'registration.scss';
+@import 'entry.scss';
+@import 'personalAccount.scss';
+// =========ДЛЯ ПЛАВНОЙ ПРОКРУТКИ К РАЗДЕЛАМ====================================
+html {
+	scroll-behavior: smooth;
+}
+// =========ДЛЯ ОТСТУПА ПРИ ПРОКРУТКЕ К РАЗДЕЛУ=================================
+//:target {
+//	scroll-margin-top: 120px;
+//}
+
+body {
+	font-family: 'Roboto', sans-serif;
+	font-size: 18px;
+	line-height: 21px;
+	letter-spacing: 0.06em;
+	color: black;
+	font-weight: 400;
+}
+//предотвращает появление горизонтальной прокрутки
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+	overflow: hidden;
+}
+//-------------------------------МЕНЮ-----------------------------------------
+.menu {
+	font-weight: 400;
+	line-height: 21px;
+	display: flex;
+	align-items: center;
+	position: fixed;
+	z-index: 1;
+	width: 100%;
+	height: 70px;
+	left: 0px;
+	top: 0px;
+	background-color: white;
+	box-shadow: 0px 4px 7px 2px rgba(0, 0, 0, 0.25);
+
+	&_ivoryColor {
+		background-color: #fff2e1;
+	}
+
+	/* .menu__logo */
+	&__logo {
+		position: relative;
+		top: 0;
+		left: 0;
+		transition: all 0.1s;
+		&:hover {
+			transition: all 0.1s;
+			top: -3px;
+			opacity: 0.8;
+		}
+		padding: 0 10px 0 0;
+	}
+	/* .menu__wrapper */
+	&__wrapper {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	/* .menu__list */
+	&__list {
+		white-space: nowrap;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		a:hover {
+			text-decoration: underline;
+		}
+		font-weight: 300;
+		line-height: 21px;
+	}
+
+	/* .menu__item */
+	&__item {
+		margin-right: 25px;
+		&:last-child {
+			margin-right: 0px;
+		}
+	}
+
+	&__right {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+	}
+	&__right-item {
+		position: relative;
+		top: 0;
+		left: 0;
+		transition: all 0.1s;
+		margin-right: 15px;
+		&:not(:first-child):hover {
+			transition: all 0.1s;
+			top: -3px;
+			opacity: 0.8;
+		}
+
+		&:first-child {
+			white-space: nowrap;
+			padding: 0 0 0 30px;
+			background: url('../img/menu/phone.svg') 0 50% / contain no-repeat;
+			& a:hover {
+				text-decoration: underline;
+			}
+		}
+		&:last-child {
+			margin-right: 0px;
+		}
+	}
+}
+//===================================Ограничивающий контейнер==========================
+.container {
+	// Расчёт ширины контейнера в процентах
+	width: (1040px * 100%) / 1440px;
+	max-width: 1440px;
+	margin: auto;
+}
+//===================================Весь контент после меню===========================
+.content {
+	//==================отступ контента(Достаём его из-под меню)
+	margin-top: 70px;
+	flex: 1 1 100%;
+}
+//===================================Главный экран=====================================
+.mainscreen {
+	padding-top: 100px;
+	color: white;
+	background: url(../img/main/bgMain.jpg);
+	height: 764px;
+	// .mainscreen__offer
+
+	&__offer {
+		padding: 20px 85px 30px 85px;
+		width: 530px;
+		background: rgba(0, 0, 0, 0.52);
+		border-radius: 5px;
+	}
+
+	// .mainscreen__title
+
+	&__title {
+		margin-bottom: 10px;
+	}
+
+	// .mainscreen__textColumn
+
+	&__textColumn {
+		max-width: 370px;
+		font-size: 20px;
+		line-height: 23px;
+		margin-bottom: 15px;
+	}
+
+	// .mainscreen__text
+
+	&__text {
+		list-style: disc;
+	}
+
+	// .mainscreen__button
+
+	&__button {
+	}
+}
+
+//===================================БЛОК ПРЕИМУЩЕСТВА===================================
+.advantages {
+	padding: 80px 0;
+	// .advantages__title
+
+	&__title {
+		text-align: center;
+		margin-bottom: 25px;
+	}
+
+	// .advantages__row
+
+	&__row {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	// .advantages__item
+
+	&__item {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	// .advantages__icon
+
+	&__icon {
+		margin-bottom: 10px;
+	}
+
+	// .advantages__subtitle
+
+	&__subtitle {
+		margin-bottom: 10px;
+	}
+
+	// .advantages__text
+
+	&__text {
+		text-align: center;
+		font-weight: 300;
+		font-size: 16px;
+		line-height: 19px;
+	}
+}
+
+//===================================БЛОК АССОРТИМЕНТ===================================
+.assortment {
+	padding: 80px 0;
+
+	// .assortment__title
+
+	&__title {
+		text-align: center;
+		margin-bottom: 20px;
+	}
+
+	// .assortment__subtitle
+
+	&__subtitle {
+		text-align: center;
+		margin-bottom: 30px;
+		font-weight: 300;
+	}
+
+	// .assortment__row
+
+	&__row {
+		display: flex;
+		justify-content: space-between;
+		a:hover {
+			opacity: 0.8;
+		}
+		a:not(:last-child) {
+			margin-right: 20px;
+		}
+	}
+
+	// .assortment__item
+
+	&__item {
+	}
+	// .assortment__photo
+
+	&__photo {
+		margin-bottom: 15px;
+		& img {
+			max-width: 100%;
+		}
+	}
+
+	// .assortment__lable
+
+	&__lable {
+		font-weight: 300;
+		text-align: center;
+	}
+}
+//===================================БЛОК ЛУЧШИЕ ПРЕДЛОЖЕНИЯ===================================
+.theBest {
+	padding: 80px 0;
+	background: #fff2e1;
+	// .theBest__title
+
+	&__title {
+		text-align: center;
+		margin-bottom: 30px;
+	}
+
+	// .theBest__row
+
+	&__row {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	// .theBest__item
+
+	&__item {
+		margin-right: 20px;
+		&:last-child {
+			margin-right: 0px;
+		}
+	}
+}
+
+//===================================ФУТЕР===================================================
+.footer {
+	display: flex;
+	align-items: center;
+	height: 90px;
+
+	// .footer_ivoryColor
+	&_ivoryColor {
+		background: #fff2e1;
+	}
+
+	// .footer__row
+	&__row {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	// .footer__text
+
+	&__text {
+	}
+
+	// .footer__contacts
+
+	&__contacts {
+		display: flex;
+		align-items: center;
+	}
+
+	// .footer__contact
+
+	&__contact {
+		position: relative;
+		top: 0;
+		left: 0;
+		transition: all 0.1s;
+		&:hover {
+			transition: all 0.1s;
+			top: -3px;
+			opacity: 0.8;
+		}
+	}
+
+	// .footer__up
+
+	&__up {
+		position: relative;
+		top: 0;
+		left: 0;
+		transition: all 0.1s;
+		&:hover {
+			transition: all 0.1s;
+			top: -3px;
+			opacity: 0.8;
+		}
+	}
+}
+
+//=======================================================ОБЩИЕ СТИЛИ ДЛЯ ВСЕГО САЙТА================
+//===================================КАРТОЧКА ТОВАРА=========================================
+.card {
+	display: flex;
+	flex-direction: column;
+	background: #fff;
+	padding: 23px;
+	border-radius: 5px;
+
+	// .card__lable
+
+	&__lable {
+		margin-bottom: 10px;
+	}
+
+	//модификатор для метки ХИТ
+	&__lable_hit {
+		background: #ff435b;
+	}
+
+	//модификатор для метки ПУТЕШЕСТВИЯ
+	&__lable_traveling {
+		background: #05b4ff;
+	}
+
+	// .card__photo
+
+	&__photo {
+		& img {
+			max-width: 100%;
+		}
+		margin-bottom: 15px;
+	}
+
+	// .card__text
+	&__text {
+		flex: 1 1 auto;
+		font-weight: 300;
+		font-size: 14px;
+		line-height: 16px;
+		letter-spacing: 0.03em;
+		max-width: 250px;
+		margin-bottom: 10px;
+	}
+
+	// .card__priceRow
+
+	&__priceRow {
+		color: #33b049;
+		display: flex;
+		justify-content: space-between;
+		font-size: 14px;
+		line-height: 16px;
+		letter-spacing: 0.03em;
+		margin-bottom: 25px;
+	}
+
+	// .card__price
+
+	&__price {
+		margin-right: 20px;
+	}
+
+	// .card__quantity
+
+	&__quantity {
+		list-style: disc;
+		font-weight: 300;
+	}
+
+	// .card__button
+
+	&__button {
+		width: 100%;
+	}
+}
+
+//===================================КНОПКА ПОДТВЕРЖДЕНИЯ зелёная===========================
+.btn {
+	color: #fff;
+	text-align: center;
+	min-width: 175px;
+	max-width: 250px;
+	padding: 8px 12px;
+	background: #3edf5b;
+	border-radius: 5px;
+	font-size: 20px;
+	line-height: 23px;
+	//для эффекта при наведении
+	position: relative;
+	top: 0;
+	left: 0;
+	transition: all 0.1s;
+	&:hover {
+		transition: all 0.1s;
+		top: 3px;
+		box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+	}
+	//=========================КНОПКА ОЧИСТКИ ДАННЫХ=======================
+	&_clear {
+		background: #ffc305;
+	}
+}
+
+//===================================ЛЭЙБЛ КАРТОЧКИ ТОВАРА===========================
+.cardLable {
+	text-align: center;
+	width: 130px;
+	font-weight: 300;
+	font-size: 14px;
+	line-height: 16px;
+	padding: 8px 20px;
+	color: #fff;
+	border-radius: 5px;
+}
+
+//===================================ГЛАВНЫЙ ЗАГОЛОВОК H1===================================
+.title {
+	font-size: 28px;
+	line-height: 33px;
+	text-transform: uppercase;
+}
+
+//===================================ЗАГОЛОВОК С КРАСНЫМ ПОДЧЁРКИКАНИЕМ=======================
+.categoryTitle {
+	font-size: 24px;
+	line-height: 28px;
+	position: relative;
+	&::after {
+		content: '';
+		position: absolute;
+		display: block;
+		margin-top: 3px;
+		left: 0;
+		width: 100%;
+		height: 3px;
+		background: #be1423;
+	}
+}
+
+//===================================ЗАГОЛОВОК С КАРТИНКОЙ======================
+.header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 197px;
+	background: url(../img/catalog/bgOtherPages.jpg);
+	margin-bottom: 50px;
+
+	// .header__title
+	&__title {
+		background: rgba(0, 0, 0, 0.61);
+		border-radius: 5px;
+		text-align: center;
+		padding: 35px 115px;
+		color: #fff;
+	}
+}
+
+//===================================ПОДПИСЬ ПОД ЦЕНОЙ(цена за шт, шт)================
+.priceLable {
+	color: #696969;
+}
+
+//===================================СЧЕТЧИК КОЛИЧЕСТВА ТОВАРОВ========================
+.quantityCounter {
+	//font-size: 14px;
+	//line-height: 16px;
+	//letter-spacing: 0.03em;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 85px;
+	padding: 5px 10px;
+	color: #33b049;
+	background: #fff2e1;
+	border-radius: 5px;
+
+	// .quantityCounter__decrement
+	&__decrement {
+		cursor: pointer;
+		padding: 0px 7px;
+		transition: all 300ms;
+		&:hover {
+			transition: all 200ms;
+			box-shadow: 0px 4px 7px 2px #b7fdc4;
+			background: #33b049;
+			color: #fff;
+			border-radius: 5px;
+		}
+	}
+
+	// .quantityCounter__counter
+	&__counter {
+	}
+
+	// .quantityCounter__increment
+	&__increment {
+		cursor: pointer;
+		padding: 0 5px;
+		position: relative;
+		transition: all 300ms;
+		&:hover {
+			transition: all 200ms;
+			border-radius: 5px;
+			box-shadow: 0px 4px 7px 2px #b7fdc4;
+			background: #33b049;
+			color: #fff;
+		}
+	}
+}
+
+//===================================КЛАССЫ ДЛЯ СОРТИРОВКИ ТОВАРОВ ПО КАТЕГОРИЯМ=====================
+.helmets {
+}
+.clothes {
+}
+.boots {
+}
+.accessories {
+}

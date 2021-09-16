@@ -1,0 +1,101 @@
+.cart {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	margin-bottom: 30px;
+	// .cart__total
+
+	&__total {
+	}
+
+	// .cart__title
+
+	&__title {
+	}
+
+	// .cart__amount
+
+	&__amount {
+		color: #33b049;
+	}
+
+	// .cart__orderButton
+	&__orderButton {
+	}
+}
+
+//===================================ВЕСЬ ПРОДУКТ(с названием товара и двумя колонками)======
+.product {
+	background: #fff;
+	padding: 25px;
+	margin-bottom: 30px;
+	border-radius: 5px;
+
+	// .product__row
+	&__row {
+		display: flex;
+	}
+
+	// .product__image===================(ПЕРВАЯ КОЛОНКА)================================
+	&__image {
+		margin-right: 5px;
+		flex: 0 1 20%;
+		img {
+			max-width: 100%;
+		}
+	}
+	// .product__title=================(ВТОРАЯ КОЛОНКА)================================
+	&__title {
+		flex: 0 1 30%;
+	}
+	// .product__body==========КАК ЭЛЕМЕНТ ВСЕГО ПРОДУКТА(ТРЕТЬЯ КОЛОНКА)================
+	&__body {
+		flex: 0 1 50%;
+	}
+}
+
+//==============================ЦЕНА ЗА ТОВАР, СЧЕТЧИК И ТД======================================
+.productBody {
+	// .productBody__headerRow==========ШАПКА С ЦЕНОЙ СЧЕТЧИКОМ И КРЕСТИКОМ========
+	&__headerRow {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		flex-wrap: wrap;
+		margin-bottom: 40px;
+	}
+
+	// .productBody__headerColumn======================КОЛОНКА ШАПКИ=========================
+	&__headerColumn {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	// .productBody__price
+	&__price {
+		//font-size: 14px;
+		//line-height: 16px;
+		//letter-spacing: 0.03em;
+		color: #33b049;
+	}
+
+	// .productBody__priceLable
+	&__priceLable {
+	}
+
+	// .productBody__counter
+	&__counter {
+	}
+
+	// .productBody__totalPrice
+	&__totalPrice {
+		//font-size: 14px;
+		//line-height: 16px;
+		//letter-spacing: 0.03em;
+		color: #33b049;
+	}
+	// .productBody__delete===============КРЕСТИК удаления товара===================
+	&__delete {
+	}
+}

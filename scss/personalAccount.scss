@@ -1,0 +1,40 @@
+//========================================ВЕСЬ БЛОК ЗАКАЗА====================
+.personalAccount {
+	// .personalAccount__row
+	&__row {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	// .personalAccount__col
+	&__col {
+		flex: 0 1 20.8%;
+		&:last-child {
+			flex: 0 1 65%;
+		}
+	}
+
+	// .personalAccount__profileButton
+	&__profileButton {
+		margin-bottom: 25px;
+	}
+
+	// .personalAccount__cartButton
+	&__cartButton {
+		margin-bottom: 25px;
+	}
+
+	// .personalAccount__exitButton
+	&__exitButton {
+		display: flex;
+		justify-content: center;
+		img {
+			margin-right: 10px;
+		}
+	}
+
+	// .personalAccount__submitButton
+	&__submitButton {
+	}
+}

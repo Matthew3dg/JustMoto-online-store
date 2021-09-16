@@ -1,0 +1,88 @@
+//========================================ВЕСЬ БЛОК ЗАКАЗА====================
+.checkout {
+	margin-bottom: 20px;
+	// .checkout__deliveryAndPaymentRow
+	&__deliveryAndPaymentRow {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	// .checkout__deliveryCol==============ПЕРВАЯ КОЛОНКА===================
+	&__deliveryCol {
+		flex: 0 1 44%;
+	}
+
+	// .checkout__paymentCol===========ВТОРАЯ КОЛОНКА========================
+	&__paymentCol {
+		flex: 0 1 42%;
+	}
+
+	// .checkout__title
+	&__title {
+		margin-bottom: 20px;
+	}
+
+	// .checkout__radio
+	&__radio {
+		font-weight: 300;
+		text-transform: uppercase;
+		margin-bottom: 10px;
+		input {
+			//отступ от чекбокса до подписи
+			margin-right: 8px;
+		}
+	}
+
+	// .checkout__freeLabel
+	&__freeLabel {
+		margin-bottom: 10px;
+		max-width: 140px;
+		padding: 7px 22px;
+		background: #fff2e1;
+		border-radius: 5px;
+	}
+
+	// .checkout__caption
+	&__caption {
+		margin-bottom: 30px;
+		font-weight: 300;
+		&:last-child {
+			margin: 0;
+		}
+	}
+
+	// .checkout__buyerData
+	&__buyerData {
+		margin-top: 20px;
+	}
+
+	//=========================КНОПКА ОФОРМЛЕНИЯ ЗАКАЗА=======================
+	&__button {
+		margin-right: 10px;
+	}
+}
+//================================ДАННЫЕ ПОЛЬЗОВАТЕЛЯ==========================
+.buyerData {
+	margin-bottom: 30px;
+	// .buyerData__field
+	&__field {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		font-weight: 300;
+		text-transform: uppercase;
+		margin-bottom: 15px;
+	}
+	input {
+		flex: 0 0 70%;
+		background: #fff2e1;
+		border-radius: 5px;
+		margin-top: 8px;
+		font-weight: 300;
+		font-size: 18px;
+		line-height: 21px;
+		letter-spacing: 0.06em;
+		color: #696969;
+		padding: 7px 22px;
+	}
+}

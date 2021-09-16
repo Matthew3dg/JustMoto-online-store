@@ -1,0 +1,113 @@
+//===============================Блок КАТАЛОГ===========================================
+.catalog {
+	// .catalog__body (ВНУТРИ ОГРАНИЧИВАЮЩЕГО КОНТЕЙНЕРА)
+	//делит на две колонки: 1)сайдбар, 2)карточки товара
+	&__body {
+		display: flex;
+	}
+
+	// .catalog__sidebar
+	&__sidebar {
+		margin-right: 50px;
+	}
+
+	// .catalog__mainContent
+	//===================================БЛОК С ТОВАРАМИ==================================
+
+	&__mainContent {
+	}
+
+	// .catalog__sort
+
+	&__sort {
+		display: flex;
+		align-items: center;
+		margin-bottom: 25px;
+		select {
+			padding: 10px;
+			margin-left: 5px;
+			font-weight: 400;
+			font-size: 18px;
+			line-height: 21px;
+			border: 1px solid #9d9d9d;
+			border-radius: 5px;
+		}
+	}
+
+	// .catalog__sortLabel
+
+	&__sortLabel {
+		font-weight: 300;
+	}
+
+	// .catalog__cards
+	//==================================БЛОК-ОБЕРТКА С КАРТОЧКАМИ ТОВАРА=====================
+	&__cards {
+		display: flex;
+		flex-wrap: wrap;
+		margin: 0 -25px;
+	}
+	&__cardRow {
+		display: flex;
+		flex-direction: column;
+		flex: 0 1 50%;
+		padding: 0 25px;
+	}
+	//==================================КАРТОЧКА КАК ЭЛЕМЕНТ КАТАЛОГА========================
+	&__card {
+		flex: 1 1 auto;
+		margin: 0 0 50px 0;
+	}
+	&__wrapper {
+		padding: 50px 50px 20px 50px;
+		background: #fff2e1;
+		border-radius: 5px;
+	}
+	&__showMoreBtn {
+		margin: 0 auto;
+		margin-bottom: 30px;
+	}
+}
+
+//===================================================БЛОК САЙДБАР==========================
+.sidebar {
+	// .sidebar__categoryTitle
+	&__categoryTitle {
+		margin-bottom: 20px;
+	}
+
+	// .sidebar__categoryList
+
+	&__categoryList {
+	}
+
+	// .sidebar__categoryItem
+	&__categoryItem {
+		font-weight: 300;
+		margin-bottom: 15px;
+		&:hover {
+			cursor: pointer;
+			text-decoration: underline;
+		}
+	}
+
+	// .sidebar__filter (ТЕГ FORM)
+	&__filter {
+	}
+
+	&__brandName {
+		font-weight: 300;
+		text-transform: uppercase;
+		margin-bottom: 15px;
+		input {
+			//отступ от чекбокса до подписи
+			margin-right: 8px;
+		}
+	}
+
+	&__filterSubmit {
+	}
+
+	&__filterReset {
+	}
+}

@@ -1,0 +1,9 @@
+//==========================================ПАРАГРАФ с ТЕКСТОМ======================
+.howToOrder {
+	a {
+		text-decoration: underline;
+		&:hover {
+			text-decoration: none;
+		}
+	}
+}
