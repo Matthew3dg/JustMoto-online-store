@@ -129,7 +129,7 @@ body {
 .container {
 	// Расчёт ширины контейнера в процентах
 	width: (1040px * 100%) / 1440px;
-	max-width: 1440px;
+	max-width: 1040px;
 	margin: auto;
 }
 //===================================Весь контент после меню===========================
@@ -142,7 +142,7 @@ body {
 .mainscreen {
 	padding-top: 100px;
 	color: white;
-	background: url(../img/main/bgMain.jpg);
+	background: url(../img/main/bgMain.jpg) 50% 50% / cover;
 	height: 764px;
 	// .mainscreen__offer
 
@@ -448,7 +448,7 @@ body {
 	color: #fff;
 	text-align: center;
 	min-width: 175px;
-	max-width: 250px;
+	//max-width: 250px;
 	padding: 8px 12px;
 	background: #3edf5b;
 	border-radius: 5px;

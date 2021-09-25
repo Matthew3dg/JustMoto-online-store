@@ -68,14 +68,22 @@
 									Категории
 								</div>
 								<ul class="sidebar__categoryList">
-									<li class="sidebar__categoryItem helmets">Мотошлемы</li>
-									<li class="sidebar__categoryItem clothes">Мотоодежда</li>
-									<li class="sidebar__categoryItem boots">Мотоботинки</li>
-									<li class="sidebar__categoryItem accessories">Аксессуары</li>
+									<li class="sidebar__categoryItem" data-filter="helmets">
+										Мотошлемы
+									</li>
+									<li class="sidebar__categoryItem" data-filter="clothes">
+										Мотоодежда
+									</li>
+									<li class="sidebar__categoryItem" data-filter="boots">
+										Мотоботинки
+									</li>
+									<li class="sidebar__categoryItem" data-filter="accessories">
+										Аксессуары
+									</li>
 								</ul>
-								<div class="sidebar__categoryTitle categoryTitle">Бренд</div>
+								<!-- <div class="sidebar__categoryTitle categoryTitle">Бренд</div> -->
 								<form action="#" method="GET" class="sidebar__filter">
-									<p class="sidebar__brandName">
+									<!-- <p class="sidebar__brandName">
 										<input
 											type="checkbox"
 											name="brand1"
@@ -106,11 +114,15 @@
 											value="true"
 											id=""
 										/>Alpinestars
-									</p>
+									</p> -->
 									<!--<button class="sidebar__filterSubmit btn" type="submit">
 										Применить
 									</button>-->
-									<button class="sidebar__filterReset btn" type="reset">
+									<button
+										class="sidebar__categoryItem btn"
+										data-filter="all"
+										type="reset"
+									>
 										Очистить
 									</button>
 								</form>
@@ -127,56 +139,14 @@
 								</div>
 								<div class="catalog__wrapper">
 									<div class="catalog__cards">
-										<div class="catalog__cardRow">
-											<a href="">
-												<div class="catalog__card card">
-													<div class="card__lable card__lable_hit cardLable">
-														Хит продаж
-													</div>
-													<div class="card__photo">
-														<img src="img/main/товар1.jpg" alt="card1" />
-													</div>
-													<div class="card__text">Мотошлем HJC i70 белый</div>
-													<ul class="card__priceRow">
-														<li class="card__price">11 600 руб.</li>
-														<li class="card__quantity">Много на складе</li>
-													</ul>
-													<a href=""
-														><div class="card__button btn">В корзину</div></a
-													>
-												</div>
-											</a>
-										</div>
-										<div class="catalog__cardRow">
-											<a href="">
-												<div class="catalog__card card">
-													<div class="card__lable card__lable_hit cardLable">
-														Хит продаж
-													</div>
-													<div class="card__photo">
-														<img src="img/main/товар2.jpg" alt="card2" />
-													</div>
-													<div class="card__text">
-														Куртка текстильная Rebelhorn Borg
-													</div>
-													<ul class="card__priceRow">
-														<li class="card__price">18 500 руб.</li>
-														<li class="card__quantity">Много на складе</li>
-													</ul>
-													<a href=""
-														><div class="card__button btn">В корзину</div></a
-													>
-												</div>
-											</a>
-										</div>
-										<div class="catalog__cardRow">
+										<div class="catalog__cardRow clothes">
 											<a href="productPage1.html">
 												<div class="catalog__card card">
 													<div class="card__lable card__lable_hit cardLable">
 														Хит продаж
 													</div>
 													<div class="card__photo">
-														<img src="img/main/товар3.jpg" alt="card3" />
+														<img src="img/catalog/card1.jpg" alt="card1" />
 													</div>
 													<div class="card__text">
 														Мотоштаны Rebelhorn CubbyIII
@@ -191,34 +161,14 @@
 												</div>
 											</a>
 										</div>
-										<div class="catalog__cardRow">
+										<div class="catalog__cardRow clothes">
 											<a href="">
 												<div class="catalog__card card">
 													<div class="card__lable card__lable_hit cardLable">
 														Хит продаж
 													</div>
 													<div class="card__photo">
-														<img src="img/main/товар1.jpg" alt="card1" />
-													</div>
-													<div class="card__text">Мотошлем HJC i70 белый</div>
-													<ul class="card__priceRow">
-														<li class="card__price">11 600 руб.</li>
-														<li class="card__quantity">Много на складе</li>
-													</ul>
-													<a href=""
-														><div class="card__button btn">В корзину</div></a
-													>
-												</div>
-											</a>
-										</div>
-										<div class="catalog__cardRow">
-											<a href="">
-												<div class="catalog__card card">
-													<div class="card__lable card__lable_hit cardLable">
-														Хит продаж
-													</div>
-													<div class="card__photo">
-														<img src="img/main/товар2.jpg" alt="card2" />
+														<img src="img/catalog/card2.jpg" alt="card2" />
 													</div>
 													<div class="card__text">
 														Куртка текстильная Rebelhorn Borg
@@ -233,21 +183,83 @@
 												</div>
 											</a>
 										</div>
-										<div class="catalog__cardRow">
+										<div class="catalog__cardRow helmets">
 											<a href="">
 												<div class="catalog__card card">
 													<div class="card__lable card__lable_hit cardLable">
 														Хит продаж
 													</div>
 													<div class="card__photo">
-														<img src="img/main/товар3.jpg" alt="card3" />
+														<img src="img/catalog/card3.jpg" alt="card3" />
+													</div>
+													<div class="card__text">Мотошлем HJC i70 белый</div>
+													<ul class="card__priceRow">
+														<li class="card__price">11 600 руб.</li>
+														<li class="card__quantity">Много на складе</li>
+													</ul>
+													<a href=""
+														><div class="card__button btn">В корзину</div></a
+													>
+												</div>
+											</a>
+										</div>
+										<div class="catalog__cardRow boots">
+											<a href="">
+												<div class="catalog__card card">
+													<div class="card__lable card__lable_hit cardLable">
+														Хит продаж
+													</div>
+													<div class="card__photo">
+														<img src="img/catalog/card4.jpg" alt="card4" />
+													</div>
+													<div class="card__text">ALPINESTARS Мотоботы</div>
+													<ul class="card__priceRow">
+														<li class="card__price">27 800 руб.</li>
+														<li class="card__quantity">Осталось не много</li>
+													</ul>
+													<a href=""
+														><div class="card__button btn">В корзину</div></a
+													>
+												</div>
+											</a>
+										</div>
+										<div class="catalog__cardRow accessories">
+											<a href="">
+												<div class="catalog__card card">
+													<div class="card__lable card__lable_hit cardLable">
+														Хит продаж
+													</div>
+													<div class="card__photo">
+														<img src="img/catalog/card5.jpg" alt="card5" />
 													</div>
 													<div class="card__text">
-														Мотоштаны Rebelhorn CubbyIII
+														ALPINESTARS Сумка для мотобот
+													</div>
+													<ul class="card__priceRow">
+														<li class="card__price">5 300 руб.</li>
+														<li class="card__quantity">Много на складе</li>
+													</ul>
+													<a href=""
+														><div class="card__button btn">В корзину</div></a
+													>
+												</div>
+											</a>
+										</div>
+										<div class="catalog__cardRow boots">
+											<a href="">
+												<div class="catalog__card card">
+													<div class="card__lable card__lable_hit cardLable">
+														Хит продаж
+													</div>
+													<div class="card__photo">
+														<img src="img/catalog/card6.jpg" alt="card6" />
+													</div>
+													<div class="card__text">
+														ALPINESTARS Мотоботы MONTY SHOE
 													</div>
 													<ul class="card__priceRow">
 														<li class="card__price">13 200 руб.</li>
-														<li class="card__quantity">Много на складе</li>
+														<li class="card__quantity">Под заказ</li>
 													</ul>
 													<a href=""
 														><div class="card__button btn">В корзину</div></a
@@ -296,4 +308,5 @@
 			</footer>
 		</div>
 	</body>
+	<script src="js/filterCatalog.js"></script>
 </html>
