@@ -82,6 +82,9 @@ h1, h2, h3, h4, h5, h6 {
 .catalog__sidebar {
   margin-right: 50px;
 }
+.catalog__mainContent {
+  width: 100%;
+}
 .catalog__sort {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -159,6 +162,10 @@ h1, h2, h3, h4, h5, h6 {
 .sidebar__brandName input {
   margin-right: 8px;
 }
+.hide {
+  display: none;
+}
+
 .howToOrder a {
   text-decoration: underline;
 }
@@ -818,7 +825,7 @@ body {
 
 .container {
   width: 72.2222222222%;
-  max-width: 1440px;
+  max-width: 1040px;
   margin: auto;
 }
 
@@ -832,7 +839,7 @@ body {
 .mainscreen {
   padding-top: 100px;
   color: white;
-  background: url(../img/main/bgMain.jpg);
+  background: url(../img/main/bgMain.jpg) 50% 50%/cover;
   height: 764px;
 }
 .mainscreen__offer {
@@ -1077,7 +1084,6 @@ body {
   color: #fff;
   text-align: center;
   min-width: 175px;
-  max-width: 250px;
   padding: 8px 12px;
   background: #3edf5b;
   border-radius: 5px;
