@@ -27,14 +27,19 @@ class ProductController {
 	}
 	async getAll(req, res) {
 		let products = await Product.findAll();
-
+		console.log(
+			'========================================================' + products
+		);
 		return res.json(products);
 	}
 	async getOne(req, res) {
 		const { id } = req.params;
-		const product = await Product.findOne({
+		let product = await Product.findOne({
 			where: { id },
 		});
+		console.log(
+			'========================================================' + product
+		);
 		return res.json(product);
 	}
 }
