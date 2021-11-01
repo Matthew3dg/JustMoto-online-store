@@ -14,10 +14,14 @@ const Registration = observer(() => {
 		try {
 			//здесь data - это декодированный токен
 			let data = await registration(email, password);
-			user.setUser(user);
+			user.setUser(data);
 			user.setIsAuth(true);
 			alert('Регистрация прошла успешно');
-			history.push('/account');
+			if (user.user.role == 'ADMIN') {
+				history.push('/admin');
+			} else {
+				history.push('/account');
+			}
 		} catch (error) {
 			alert(error.response.data.message);
 		}
@@ -44,15 +48,15 @@ const Registration = observer(() => {
 						</div>
 						{/* <p className="buyerData__field">
 							Фамилия:
-							<input type="text" name="surname" defaultValue="surname" />
+							<input type="text" name="surname" placeholder="surname" />
 						</p>
 						<p className="buyerData__field">
 							Имя:
-							<input type="text" name="name" defaultValue="name" />
+							<input type="text" name="name" placeholder="name" />
 						</p>
 						<p className="buyerData__field">
 							Отчество:
-							<input type="text" name="middleName" defaultValue="middleName" />
+							<input type="text" name="middleName" placeholder="middleName" />
 						</p> */}
 						<p className="buyerData__field">
 							E-mail:
@@ -61,12 +65,12 @@ const Registration = observer(() => {
 								onChange={(e) => setEmail(e.target.value)}
 								type="email"
 								name="email"
-								defaultValue="email"
+								placeholder="email"
 							/>
 						</p>
 						{/* <p className="buyerData__field">
 							Телефон:
-							<input type="tel" name="tel" defaultValue="tel" />
+							<input type="tel" name="tel" placeholder="tel" />
 						</p> */}
 						<p className="buyerData__field">
 							Пароль:
@@ -75,19 +79,19 @@ const Registration = observer(() => {
 								onChange={(e) => setPassword(e.target.value)}
 								type="password"
 								name="password"
-								defaultValue="password"
+								placeholder="password"
 							/>
 						</p>
 						{/* <p className="buyerData__field">
 							Пароль ещё раз:
-							<input type="password" name="password" defaultValue="password" />
+							<input type="password" name="password" placeholder="password" />
 						</p> */}
 						{/* <p className="registration__radio">
 							<input
 								defaultChecked
 								type="checkbox"
 								name="dataProcessing"
-								defaultValue="agree"
+								placeholder="agree"
 							/>
 							Я даю согласие на обработку персональных данных
 						</p> */}

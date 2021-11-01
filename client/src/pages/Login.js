@@ -15,10 +15,14 @@ const Login = observer(() => {
 			//здесь data - это декодированный токен
 			let data = await login(email, password);
 
-			user.setUser(true);
+			user.setUser(data);
 			user.setIsAuth(true);
 			alert('Авторизация прошла успешно');
-			history.push('/account');
+			if (user.user.role == 'ADMIN') {
+				history.push('/admin');
+			} else {
+				history.push('/account');
+			}
 		} catch (error) {
 			alert(error.response.data.message);
 		}
@@ -53,7 +57,7 @@ const Login = observer(() => {
 								onChange={(e) => setEmail(e.target.value)}
 								type="email"
 								name="email"
-								defaultValue="email"
+								placeholder="email"
 							/>
 						</p>
 						<p className="buyerData__field">
@@ -63,7 +67,7 @@ const Login = observer(() => {
 								onChange={(e) => setPassword(e.target.value)}
 								type="password"
 								name="password"
-								defaultValue="password"
+								placeholder="password"
 							/>
 						</p>
 					</div>

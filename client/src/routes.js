@@ -11,7 +11,10 @@ import ProductPage from './pages/ProductPage';
 import Registration from './pages/Registration';
 
 // маршруты доступные только авторизованным пользователям
-export const authRoutes = [
+export const authRoutes = [];
+
+// маршруты доступные всем пользователям
+export const publicRoutes = [
 	{
 		path: '/admin',
 		Component: Admin,
@@ -20,10 +23,6 @@ export const authRoutes = [
 		path: '/account',
 		Component: PersonalAccount,
 	},
-];
-
-// маршруты доступные всем пользователям
-export const publicRoutes = [
 	{
 		path: '/',
 		Component: MainPage,

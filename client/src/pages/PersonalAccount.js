@@ -1,7 +1,20 @@
-import React from 'react';
+import { observer } from 'mobx-react-lite';
+import React, { useContext } from 'react';
+import { useHistory } from 'react-router';
+import { Context } from '..';
 import exitArrow from '../components/img/exitArrow.svg';
 
-function PersonalAccount() {
+const PersonalAccount = observer(() => {
+	const { user } = useContext(Context);
+	const history = useHistory();
+
+	const logOut = () => {
+		user.setUser({});
+		user.setIsAuth(false);
+		alert('Вы успшно вышли из аккаунта');
+		history.push('/login');
+	};
+
 	return (
 		<div className="content">
 			<div className="header">
@@ -14,15 +27,10 @@ function PersonalAccount() {
 							<h2 className="registration__title categoryTitle">
 								Личный кабинет
 							</h2>
-							<a href="personalAccount.html">
-								<div className="personalAccount__profileButton btn">
-									Профиль
-								</div>
-							</a>
-							<a href="cart.html">
+							<a href="/cart">
 								<div className="personalAccount__cartButton btn">Корзина</div>
 							</a>
-							<a href="personalAccount.html">
+							<a onClick={() => logOut()}>
 								<div className="personalAccount__exitButton btn">
 									<img src={exitArrow} alt="exitArrow" />
 									Выход
@@ -36,43 +44,27 @@ function PersonalAccount() {
 							</h2>
 							<p className="buyerData__field">
 								Фамилия:
-								<input type="text" name="surname" defaultValue="surname" />
+								<input type="text" name="surname" placeholder="surname" />
 							</p>
 							<p className="buyerData__field">
 								Имя:
-								<input type="text" name="name" defaultValue="name" />
+								<input type="text" name="name" placeholder="name" />
 							</p>
 							<p className="buyerData__field">
 								Отчество:
-								<input
-									type="text"
-									name="middleName"
-									defaultValue="middleName"
-								/>
+								<input type="text" name="middleName" placeholder="middleName" />
 							</p>
 							<p className="buyerData__field">
 								E-mail:
-								<input type="email" name="email" defaultValue="email" />
+								<input type="email" name="email" placeholder="email" />
 							</p>
 							<p className="buyerData__field">
 								Телефон:
-								<input type="tel" name="tel" defaultValue="tel" />
+								<input type="tel" name="tel" placeholder="tel" />
 							</p>
 							<p className="buyerData__field">
 								Пароль:
-								<input
-									type="password"
-									name="password"
-									defaultValue="password"
-								/>
-							</p>
-							<p className="buyerData__field">
-								Пароль ещё раз:
-								<input
-									type="password"
-									name="password"
-									defaultValue="password"
-								/>
+								<input type="password" name="password" placeholder="password" />
 							</p>
 							<button
 								className="personalAccount__submitButton btn"
@@ -86,6 +78,6 @@ function PersonalAccount() {
 			</div>
 		</div>
 	);
-}
+});
 
 export default PersonalAccount;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { fetchCategories } from '../http/productAPI';
+import { fetchOneProduct } from '../http/productAPI';
 import { useParams } from 'react-router-dom';
 
 const ProductPage = () => {
@@ -15,7 +15,7 @@ const ProductPage = () => {
 	const { id } = useParams();
 
 	useEffect(() => {
-		fetchCategories(id).then((product) => setProduct(product));
+		fetchOneProduct(id).then((product) => setProduct(product));
 	}, []);
 
 	return (

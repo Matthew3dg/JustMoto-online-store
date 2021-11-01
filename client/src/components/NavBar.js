@@ -9,15 +9,18 @@ import { useHistory } from 'react-router';
 const NavBar = observer(() => {
 	const { user } = useContext(Context);
 	const history = useHistory();
-	//let route = '';
+	let route = '';
 
-	// if (user.isAuth && user.role == 'ADMIN') {
-	// 	route = '/admin';
-	// } else if (user.isAuth == true) {
-	// 	route = '/account';
-	// } else {
-	// 	route = '/registration';
-	// }
+	console.log('user.isAuth: ' + user.isAuth);
+	console.log('user.role: ' + user.user.role);
+
+	if (user.isAuth && user.user.role == 'ADMIN') {
+		route = '/admin';
+	} else if (user.isAuth == true) {
+		route = '/account';
+	} else {
+		route = '/login';
+	}
 
 	return (
 		<header className="menu">
@@ -50,7 +53,7 @@ const NavBar = observer(() => {
 							</a>
 						</li>
 						<li className="menu__right-item">
-							<a href="/login">
+							<a onClick={() => history.push(route)}>
 								<img src={personalAccount} alt="personalAccount" />
 							</a>
 						</li>
