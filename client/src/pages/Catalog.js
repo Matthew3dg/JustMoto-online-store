@@ -12,6 +12,8 @@ const Catalog = observer(() => {
 		fetchProducts().then((products) => (product._products = products));
 	}, []);
 
+	useEffect(() => {}, [product._selectedCategory, product._products]);
+
 	return (
 		<div className="content">
 			<div className="header">
@@ -29,9 +31,13 @@ const Catalog = observer(() => {
 									return (
 										<li
 											className="sidebar__categoryItem"
-											// data-filter="clothes"
-											//active={category.id === product.selectedCategory.id}
-											//onClick={() => product.setSelectedCategory(category)}
+											onClick={() => {
+												product._selectedCategory = category;
+												console.log(product._selectedCategory.name);
+												fetchProducts(product._selectedCategory.id).then(
+													(products) => (product._products = products)
+												);
+											}}
 											key={category.id}
 										>
 											{category.name}
@@ -39,30 +45,28 @@ const Catalog = observer(() => {
 									);
 								})}
 							</ul>
-							<form action="#" method="GET" className="sidebar__filter">
-								<button
-									className="sidebar__categoryItem btn"
-									data-filter="all"
-									type="reset"
-								>
-									Очистить
-								</button>
-							</form>
+							<button
+								className="sidebar__categoryItem btn"
+								onClick={() => {
+									fetchProducts().then(
+										(products) => (product._products = products)
+									);
+								}}
+							>
+								Очистить
+							</button>
 						</aside>
 						<main className="catalog__mainContent">
 							<div className="catalog__sort">
 								<div className="catalog__sortLabel">Сортировать по:</div>
-								<form action="#" method="get">
-									<select name="sort" id="catalogSort">
-										<option value="increment">Возрастанию цены</option>
-										<option value="decrement">Убыванию цены</option>
-									</select>
-								</form>
+								<select name="sort" id="catalogSort">
+									<option value="increment">Возрастанию цены</option>
+									<option value="decrement">Убыванию цены</option>
+								</select>
 							</div>
 							<div className="catalog__wrapper">
 								<div className="catalog__cards">
 									{/* контейнер для товаров каталога*/}
-
 									{product.products.map((product) => (
 										<ProductCard key={product.id} product={product} />
 									))}

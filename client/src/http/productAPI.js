@@ -17,8 +17,8 @@ export const createProduct = async (name) => {
 	// data - обьект содержащий поле token
 	return data;
 };
-export const fetchProducts = async () => {
-	const { data } = await $host.get('api/product');
+export const fetchProducts = async (categoryId) => {
+	const { data } = await $host.get('api/product', { params: { categoryId } });
 	return data;
 };
 export const fetchOneProduct = async (id) => {

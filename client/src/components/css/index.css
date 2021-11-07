@@ -90,6 +90,10 @@ h6 {
 }
 
 /*Конец обнуления*/
+
+.active {
+	text-decoration: underline;
+}
 .catalog__body {
 	display: -webkit-box;
 	display: -ms-flexbox;
