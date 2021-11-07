@@ -26,15 +26,19 @@ class ProductController {
 		}
 	}
 	async getAll(req, res) {
-		let products = await Product.findAll();
+		let { categoryId } = req.query;
+		let products;
+		if (!categoryId) products = await Product.findAll();
+		if (categoryId) products = await Product.findAll({ where: { categoryId } });
 
 		return res.json(products);
 	}
 	async getOne(req, res) {
 		const { id } = req.params;
-		const product = await Product.findOne({
+		let product = await Product.findOne({
 			where: { id },
 		});
+
 		return res.json(product);
 	}
 }

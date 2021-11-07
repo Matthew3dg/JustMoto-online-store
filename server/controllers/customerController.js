@@ -58,7 +58,7 @@ class CustomerController {
 			return next(ApiError.internal('Введён неверный пароль'));
 		}
 		const token = generateJwt(customer.id, customer.email, customer.role);
-		return res.json(token);
+		return res.json({ token });
 	}
 	async check(req, res, next) {
 		// если пользователь постоянно пользуется аккаунтом, то токен перезаписывается

@@ -56,24 +56,69 @@
 					</nav>
 				</div>
 			</header>
-			<div class="content footer_ivoryColor">
+			<div class="content">
 				<div class="header">
-					<h1 class="header__title title">Корзина</h1>
+					<h1 class="header__title title">Админ панель</h1>
 				</div>
 				<div class="container">
-					<div class="cart">
-						<div class="cart__total">
-							<h2 class="cart__title title">Товары в корзине на сумму:</h2>
+					<form
+						class="registration"
+						action="#"
+						method="POST"
+						enctype="multipart/form-data"
+					>
+						<div class="registration__buyerData buyerData">
+							<div class="registration__headerRow">
+								<h2 class="registration__title categoryTitle">
+									Добавить товар
+								</h2>
+							</div>
+							<p class="buyerData__field">
+								Название:<input type="text" name="title" value="title" />
+							</p>
+							<p class="buyerData__field">
+								Изображение:<input type="file" name="file" accept="image/*" />
+							</p>
+							<p class="buyerData__field">
+								Описание:<input
+									type="text"
+									name="description"
+									value="description"
+								/>
+							</p>
+							<p class="buyerData__field">
+								Цена:<input type="number" name="price" value="100500" />
+							</p>
 						</div>
-						<div class="cart__amount">0 руб.</div>
-						<a href="checkout.html">
-							<div class="cart__orderButton btn">Оформить заказ</div>
-						</a>
-					</div>
-					<div class="products"></div>
+						<button class="registration__button btn" type="submit">
+							Добавить
+						</button>
+						<button class="registration__button btn btn_clear" type="reset">
+							Очистить данные
+						</button>
+					</form>
+
+					<form class="registration" action="#" method="get">
+						<div class="registration__buyerData buyerData">
+							<div class="registration__headerRow">
+								<h2 class="registration__title categoryTitle">
+									Добавить категорию
+								</h2>
+							</div>
+							<p class="buyerData__field">
+								Название:<input type="text" name="name" value="name" />
+							</p>
+						</div>
+						<button class="registration__button btn" type="submit">
+							Добавить
+						</button>
+						<button class="registration__button btn btn_clear" type="reset">
+							Очистить данные
+						</button>
+					</form>
 				</div>
 			</div>
-			<footer class="footer">
+			<footer class="footer footer_ivoryColor">
 				<div class="container">
 					<div class="footer__row">
 						<div class="footer__text">© 2021 Все права защищены</div>
@@ -104,5 +149,4 @@
 			</footer>
 		</div>
 	</body>
-	<script type="module" src="js/cart.js"></script>
 </html>
