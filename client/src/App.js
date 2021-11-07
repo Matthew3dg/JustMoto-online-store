@@ -9,12 +9,17 @@ import { check } from './http/userAPI';
 
 const App = observer(() => {
 	const { user } = useContext(Context);
-	//const [loading, setLoading] = useState(true);
 
 	//если массив зависимостей пустой то отрабтает один раз при запуске приложения
 	useEffect(() => {
-		check().then(() => {
-			user.setUser(user);
+		// здесь res - это возвращаемое значение функции check(декодированный токен)
+		check().then((res) => {
+			console.log('res from App: ');
+			console.log(res);
+			user.user.role = res.role;
+			user.user.id = res.id;
+			user.user.email = res.email;
+			//user.setUser(res);
 			user.setIsAuth(true);
 		});
 	}, []);

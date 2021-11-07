@@ -6,7 +6,7 @@ import ProductStore from './store/ProductStore';
 import UserStore from './store/UserStore';
 
 //следим за состоянием переменных isAuth & user
-export const Context = createContext();
+export const Context = createContext(null);
 
 ReactDOM.render(
 	//следим за состоянием переменных isAuth & user

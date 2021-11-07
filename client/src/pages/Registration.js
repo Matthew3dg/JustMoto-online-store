@@ -14,7 +14,7 @@ const Registration = observer(() => {
 		try {
 			//здесь data - это декодированный токен
 			let data = await registration(email, password);
-			user.setUser(data);
+			user.setUser(user);
 			user.setIsAuth(true);
 			alert('Регистрация прошла успешно');
 			if (user.user.role == 'ADMIN') {
@@ -98,7 +98,6 @@ const Registration = observer(() => {
 					</div>
 					<a
 						className="registration__button btn"
-						// type="submit"
 						onClick={() => {
 							signIn();
 						}}

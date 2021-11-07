@@ -7,7 +7,7 @@ export const registration = async (email, password) => {
 	const { data } = await $host.post('api/customer/registration', {
 		email,
 		password,
-		role: 'ADMIN',
+		role: 'USER',
 	});
 	localStorage.setItem('token', data.token);
 	// data - обьект содержащий поле token
@@ -28,6 +28,7 @@ export const login = async (email, password) => {
 // если токен не валиден, то пользователь разлогинивается
 export const check = async () => {
 	const { data } = await $authHost.get('api/customer/auth');
+
 	localStorage.setItem('token', data.token);
 	return jwt_decode(data.token);
 };

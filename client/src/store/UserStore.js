@@ -1,8 +1,9 @@
 import { makeAutoObservable } from 'mobx';
+import jwt_decode from 'jwt-decode';
 
 export default class UserStore {
 	constructor() {
-		this._isAuth = false;
+		this._isAuth = localStorage.getItem('token') ? true : false;
 		this._user = {
 			// id: '',
 			// name: '',
@@ -10,7 +11,7 @@ export default class UserStore {
 			// email: '',
 			// password: '',
 			// address: '',
-			// role: '',
+			role: jwt_decode(localStorage.getItem('token')).role,
 		};
 		//для того чтобы mobx следил за сосотянием переменных и при изменении перерисовывал компоненты
 		makeAutoObservable(this);

@@ -11,6 +11,7 @@ const PersonalAccount = observer(() => {
 	const logOut = () => {
 		user.setUser({});
 		user.setIsAuth(false);
+		localStorage.removeItem('token');
 		alert('Вы успшно вышли из аккаунта');
 		history.push('/login');
 	};

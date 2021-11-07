@@ -14,8 +14,11 @@ const Login = observer(() => {
 		try {
 			//здесь data - это декодированный токен
 			let data = await login(email, password);
-
-			user.setUser(data);
+			console.log(data);
+			user.user.role = data.role;
+			user.user.id = data.id;
+			user.user.email = data.email;
+			//user.setUser(data);
 			user.setIsAuth(true);
 			alert('Авторизация прошла успешно');
 			if (user.user.role == 'ADMIN') {

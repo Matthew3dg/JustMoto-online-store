@@ -11,6 +11,7 @@ const NavBar = observer(() => {
 	const history = useHistory();
 	let route = '';
 
+	console.log(user);
 	console.log('user.isAuth: ' + user.isAuth);
 	console.log('user.role: ' + user.user.role);
 
