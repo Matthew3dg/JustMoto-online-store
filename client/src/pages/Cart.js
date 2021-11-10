@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import CartItem from '../components/CartItem';
 
 const Cart = () => {
 	let cart = JSON.parse(localStorage.getItem('cart'));
 	let cartArray = [];
 	if (cart) cartArray = Object.entries(cart);
+
+	//const [cartAmountState, setCartAmountState] = useState(0);
+	//useEffect(() => {}, [cartAmountState]);
 
 	console.log(cartArray);
 	// отрисовка корзины

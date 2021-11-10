@@ -5,12 +5,18 @@ import deleteProduct from './img/cart/Крестик.svg';
 const CartItem = ({ index, id, cartItem, cart }) => {
 	//для динамического перехода на страницу каждого отдельного товара
 	const history = useHistory();
-	useEffect(() => {}, [cart]);
+	const [counter, setCounter] = useState(0);
+	//const [sum, setSum] = useState(0);
+	const [cartItemState, setCartItemState] = useState(cartItem);
+	//const [cartState, setCartState] = useState(cart);
+
+	useEffect(() => {}, [cartItemState]);
+
 	let sum = cartItem.counter * cartItem.price;
 	// увеличение количества товаров
 	function incrementFunction() {
 		//let cart = JSON.parse(localStorage.getItem('cart'));
-		cartItem.counter++;
+		setCounter(cartItem.counter++);
 		localStorage.setItem('cart', JSON.stringify(Object.fromEntries(cart)));
 	}
 
@@ -21,7 +27,7 @@ const CartItem = ({ index, id, cartItem, cart }) => {
 			deleteFunction();
 			return true;
 		}
-		cartItem.counter--;
+		setCounter(cartItem.counter--);
 		localStorage.setItem('cart', JSON.stringify(Object.fromEntries(cart)));
 	}
 
@@ -30,6 +36,7 @@ const CartItem = ({ index, id, cartItem, cart }) => {
 		//let cart = JSON.parse(localStorage.getItem('cart'));
 		cart.splice(index, 1);
 		localStorage.setItem('cart', JSON.stringify(Object.fromEntries(cart)));
+		return cart;
 	}
 
 	return (

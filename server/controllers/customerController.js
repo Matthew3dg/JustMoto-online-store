@@ -15,6 +15,33 @@ const generateJwt = (id, email, role) => {
 };
 
 class CustomerController {
+	async update(req, res, next) {
+		// получаем данные для обновления из тела запроса с клиента
+		const { name, phone, address, id } = req.body;
+
+		// обновляем данные пользователя с заданным ID
+		const customer = await Customer.update(
+			{
+				name: name,
+				phone: phone,
+				address: address,
+			},
+			{
+				where: {
+					id: id,
+				},
+			}
+		);
+		//получаем обновленные данные о пользователе
+		const returnUpdatedUser = await Customer.findOne({ where: { id: id } });
+		const response = {
+			name: returnUpdatedUser.name,
+			phone: returnUpdatedUser.phone,
+			address: returnUpdatedUser.address,
+		};
+		// возвращаем объект на клиент
+		return res.json(response);
+	}
 	async registration(req, res, next) {
 		// получаем данные для регистрации из тела запроса с клиента
 		const { email, password, role } = req.body;
@@ -57,8 +84,14 @@ class CustomerController {
 		if (!comparePassword) {
 			return next(ApiError.internal('Введён неверный пароль'));
 		}
+
+		const response = {
+			name: customer.name,
+			phone: customer.phone,
+			address: customer.address,
+		};
 		const token = generateJwt(customer.id, customer.email, customer.role);
-		return res.json({ token });
+		return res.json({ token, response });
 	}
 	async check(req, res, next) {
 		// если пользователь постоянно пользуется аккаунтом, то токен перезаписывается
