@@ -22,7 +22,6 @@ export const update = async (name, phone, address, id) => {
 		id,
 	});
 	//localStorage.setItem('token', data.token);
-	// data - обьект содержащий поле token
 	return data;
 };
 

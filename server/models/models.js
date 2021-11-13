@@ -15,6 +15,7 @@ const Order = sequelize.define('order', {
 });
 const OrderProduct = sequelize.define('order_product', {
 	id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+	counter: { type: DataTypes.INTEGER },
 });
 const Product = sequelize.define('product', {
 	id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
@@ -28,14 +29,21 @@ const Category = sequelize.define('category', {
 	name: { type: DataTypes.STRING, unique: true },
 });
 
-Customer.hasMany(Order);
+//помненял с hasMany на hasOne
+Customer.hasOne(Order);
 Order.belongsTo(Customer);
 
 Category.hasMany(Product);
 Product.belongsTo(Category);
+// добавил
+Order.hasMany(OrderProduct);
+OrderProduct.belongsTo(Order);
+// добавил
+Product.hasMany(OrderProduct);
+OrderProduct.belongsTo(Product);
 
-Order.belongsToMany(Product, { through: OrderProduct });
-Product.belongsToMany(Order, { through: OrderProduct });
+// Order.belongsToMany(Product, { through: OrderProduct });
+// Product.belongsToMany(Order, { through: OrderProduct });
 
 module.exports = {
 	Customer,

@@ -1,7 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import CartItem from '../components/CartItem';
+import { createOrder } from '../http/orderAPI';
+import { Context } from '..';
+import { observer } from 'mobx-react-lite';
 
-const Cart = () => {
+const Cart = observer(() => {
+	const { user } = useContext(Context);
+	let orderId = user._user.id;
+	console.log(orderId);
+
 	let cart = JSON.parse(localStorage.getItem('cart'));
 	let cartArray = [];
 	if (cart) cartArray = Object.entries(cart);
@@ -9,23 +16,7 @@ const Cart = () => {
 	//const [cartAmountState, setCartAmountState] = useState(0);
 	//useEffect(() => {}, [cartAmountState]);
 
-	console.log(cartArray);
-	// отрисовка корзины
-	function renderCart() {
-		// for (let [key, value] of Object.entries(cart)) {
-		// 	console.log(key);
-		// 	// сумма для каждого товара
-		// 	let sum = parseInt(value.price) * value.counter;
-		// 	return <CartItem id={key} cartItem={value} sum={sum} cart={cart} />;
-		// }
-		// cartArray.map((item, index, arr) => {
-		// 	// сумма для каждого товара
-		// 	console.log(item[0]);
-		// 	console.log(item[1]);
-		// 	let sum = parseInt(item[1].price) * item[1].counter;
-		// 	<CartItem id={item[0]} cartItem={item[1]} sum={sum} cart={arr} />;
-		// });
-	}
+	//console.log(cartArray);
 
 	// подсчет общей суммы товаров в корзине
 	function cartAmount() {
@@ -40,6 +31,24 @@ const Cart = () => {
 		return amount;
 	}
 
+	const order = async () => {
+		try {
+			let cart = JSON.parse(localStorage.getItem('cart'));
+			let productId = '';
+			let counter = 0;
+			for (let [key, value] of Object.entries(cart)) {
+				productId = key;
+				counter = value.counter;
+				// data - это ответ от сервера
+				let data = await createOrder(productId, orderId, counter);
+				console.log(data);
+			}
+			alert('Заказ успешно сформирован');
+		} catch (error) {
+			alert(error.response.data.message);
+		}
+	};
+
 	return (
 		<div className="content footer_ivoryColor">
 			<div className="header">
@@ -51,8 +60,15 @@ const Cart = () => {
 						<h2 className="cart__title title">Товары в корзине на сумму:</h2>
 					</div>
 					<div className="cart__amount">{cartAmount()} руб.</div>
-					<a href="checkout.html">
-						<div className="cart__orderButton btn">Оформить заказ</div>
+					<a>
+						<div
+							className="cart__orderButton btn"
+							onClick={() => {
+								order();
+							}}
+						>
+							Оформить заказ
+						</div>
 					</a>
 				</div>
 				<div className="products">
@@ -69,6 +85,6 @@ const Cart = () => {
 			</div>
 		</div>
 	);
-};
+});
 
 export default Cart;

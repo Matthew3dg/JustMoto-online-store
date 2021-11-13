@@ -27,7 +27,7 @@ async function start() {
 	try {
 		await sequelize.authenticate();
 		console.log('Подключение к БД just_moto успешно установлено');
-		await sequelize.sync(); // синхронизирует все таблицы
+		await sequelize.sync({ alter: true }); // синхронизирует все таблицы
 		app.listen(PORT, () => {
 			console.log('Server has been started on PORT 5000...');
 		});
