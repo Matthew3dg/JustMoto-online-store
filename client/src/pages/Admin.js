@@ -5,13 +5,20 @@ import {
 	createProduct,
 	fetchCategories,
 } from '../http/productAPI.js';
+import { fetchOrders, updateStatus } from '../http/orderAPI.js';
 import { Context } from '../index.js';
 
 const Admin = observer(() => {
 	const { product } = useContext(Context);
+
+	const [orders, setOrders] = useState([]);
+
+	//let ordersArr = [];
 	useEffect(() => {
 		fetchCategories().then((categories) => (product._categories = categories));
+		fetchOrders().then((orders) => setOrders(orders));
 	}, []);
+	console.log(orders);
 	// состояние для добавления категории
 	const [value, setValue] = useState('');
 
@@ -136,7 +143,7 @@ const Admin = observer(() => {
 					</button>
 				</div>
 
-				<form className="registration" action="#" method="get">
+				<div className="registration">
 					<div className="registration__buyerData buyerData">
 						<div className="registration__headerRow">
 							<h2 className="registration__title categoryTitle">
@@ -157,10 +164,50 @@ const Admin = observer(() => {
 					<button className="registration__button btn" onClick={addCategory}>
 						Добавить
 					</button>
-					<button className="registration__button btn btn_clear" type="reset">
+					<button className="registration__button btn btn_clear">
 						Очистить данные
 					</button>
-				</form>
+				</div>
+
+				<div className="registration">
+					<div className="registration__buyerData buyerData">
+						<div className="registration__headerRow">
+							<h2 className="registration__title categoryTitle">
+								Изменить статус заказа
+							</h2>
+						</div>
+
+						{orders.map((order) => {
+							return (
+								<p className="buyerData__field">
+									Номер заказа: {order.id}. Статус заказа:
+									<select
+										onChange={(event) => {
+											//с помощью updateStatus отправляется запрос на сервер
+											updateStatus(order.id, event.target.value);
+											alert('Изменения успешно сохранены');
+										}}
+									>
+										<option
+											className="buyerData__field"
+											key={order.id}
+											value={order.status}
+											selected
+										>
+											{order.status}
+										</option>
+										<option className="buyerData__field" value="В обработке">
+											В обработке
+										</option>
+										<option className="buyerData__field" value="Завершён">
+											Завершён
+										</option>
+									</select>
+								</p>
+							);
+						})}
+					</div>
+				</div>
 			</div>
 		</div>
 	);

@@ -8,6 +8,7 @@ import { update } from '../http/userAPI';
 const PersonalAccount = observer(() => {
 	const { user } = useContext(Context);
 	const history = useHistory();
+	console.log(user.user.id);
 
 	const [name, setName] = useState();
 	const [phone, setPhone] = useState();

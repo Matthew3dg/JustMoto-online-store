@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import CartItem from '../components/CartItem';
-import { createOrder } from '../http/orderAPI';
+import { createOrder, createOrderProduct } from '../http/orderAPI';
 import { Context } from '..';
 import { observer } from 'mobx-react-lite';
 
 const Cart = observer(() => {
 	const { user } = useContext(Context);
-	let orderId = user._user.id;
-	console.log(orderId);
+	let customerId = user._user.id;
+	console.log(customerId);
 
 	let cart = JSON.parse(localStorage.getItem('cart'));
 	let cartArray = [];
@@ -30,20 +30,24 @@ const Cart = observer(() => {
 		}
 		return amount;
 	}
+	let amount = cartAmount();
 
 	const order = async () => {
 		try {
 			let cart = JSON.parse(localStorage.getItem('cart'));
 			let productId = '';
 			let counter = 0;
+			let order = await createOrder(customerId, amount);
+			console.log(order);
 			for (let [key, value] of Object.entries(cart)) {
 				productId = key;
 				counter = value.counter;
 				// data - это ответ от сервера
-				let data = await createOrder(productId, orderId, counter);
-				console.log(data);
+				let data = await createOrderProduct(productId, order.id, counter);
 			}
-			alert('Заказ успешно сформирован');
+			alert(
+				`Заказ успешно сформирован. Номер вашего заказа: ${order.id}, сумма заказа: ${order.amount} `
+			);
 		} catch (error) {
 			alert(error.response.data.message);
 		}
@@ -57,9 +61,9 @@ const Cart = observer(() => {
 			<div className="container">
 				<div className="cart">
 					<div className="cart__total">
-						<h2 className="cart__title title">Товары в корзине на сумму:</h2>
+						<h2 className="cart__title title">Товары в корзине:</h2>
 					</div>
-					<div className="cart__amount">{cartAmount()} руб.</div>
+					{/* <div className="cart__amount">{cartAmount()} руб.</div> */}
 					<a>
 						<div
 							className="cart__orderButton btn"

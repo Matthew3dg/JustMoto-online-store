@@ -1,0 +1,2332 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 14.0
+-- Dumped by pg_dump version 14.0
+
+-- Started on 2021-11-19 13:16:49
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 214 (class 1259 OID 16492)
+-- Name: categories; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.categories (
+    id integer NOT NULL,
+    name character varying(255),
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.categories OWNER TO postgres;
+
+--
+-- TOC entry 213 (class 1259 OID 16491)
+-- Name: categories_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.categories_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.categories_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3765 (class 0 OID 0)
+-- Dependencies: 213
+-- Name: categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.categories_id_seq OWNED BY public.categories.id;
+
+
+--
+-- TOC entry 210 (class 1259 OID 16466)
+-- Name: customers; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.customers (
+    id integer NOT NULL,
+    name character varying(255),
+    phone character varying(255),
+    email character varying(255),
+    password character varying(255),
+    address text,
+    role character varying(255) DEFAULT 'USER'::character varying,
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.customers OWNER TO postgres;
+
+--
+-- TOC entry 209 (class 1259 OID 16465)
+-- Name: customers_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.customers_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.customers_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3766 (class 0 OID 0)
+-- Dependencies: 209
+-- Name: customers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.customers_id_seq OWNED BY public.customers.id;
+
+
+--
+-- TOC entry 218 (class 1259 OID 16517)
+-- Name: order_products; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.order_products (
+    id integer NOT NULL,
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL,
+    counter integer,
+    "orderId" integer,
+    "productId" integer
+);
+
+
+ALTER TABLE public.order_products OWNER TO postgres;
+
+--
+-- TOC entry 217 (class 1259 OID 16516)
+-- Name: order_products_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.order_products_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.order_products_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3767 (class 0 OID 0)
+-- Dependencies: 217
+-- Name: order_products_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.order_products_id_seq OWNED BY public.order_products.id;
+
+
+--
+-- TOC entry 212 (class 1259 OID 16480)
+-- Name: orders; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.orders (
+    id integer NOT NULL,
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL,
+    "customerId" integer,
+    amount integer,
+    status character varying(255) DEFAULT 'Новый'::character varying
+);
+
+
+ALTER TABLE public.orders OWNER TO postgres;
+
+--
+-- TOC entry 211 (class 1259 OID 16479)
+-- Name: orders_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.orders_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.orders_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3768 (class 0 OID 0)
+-- Dependencies: 211
+-- Name: orders_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.orders_id_seq OWNED BY public.orders.id;
+
+
+--
+-- TOC entry 216 (class 1259 OID 16501)
+-- Name: products; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.products (
+    id integer NOT NULL,
+    title character varying(255),
+    img character varying(255),
+    description text,
+    price integer,
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL,
+    "categoryId" integer
+);
+
+
+ALTER TABLE public.products OWNER TO postgres;
+
+--
+-- TOC entry 215 (class 1259 OID 16500)
+-- Name: products_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.products_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.products_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3769 (class 0 OID 0)
+-- Dependencies: 215
+-- Name: products_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.products_id_seq OWNED BY public.products.id;
+
+
+--
+-- TOC entry 3188 (class 2604 OID 16495)
+-- Name: categories id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories ALTER COLUMN id SET DEFAULT nextval('public.categories_id_seq'::regclass);
+
+
+--
+-- TOC entry 3184 (class 2604 OID 16469)
+-- Name: customers id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers ALTER COLUMN id SET DEFAULT nextval('public.customers_id_seq'::regclass);
+
+
+--
+-- TOC entry 3190 (class 2604 OID 16520)
+-- Name: order_products id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.order_products ALTER COLUMN id SET DEFAULT nextval('public.order_products_id_seq'::regclass);
+
+
+--
+-- TOC entry 3186 (class 2604 OID 16483)
+-- Name: orders id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.orders ALTER COLUMN id SET DEFAULT nextval('public.orders_id_seq'::regclass);
+
+
+--
+-- TOC entry 3189 (class 2604 OID 16504)
+-- Name: products id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products ALTER COLUMN id SET DEFAULT nextval('public.products_id_seq'::regclass);
+
+
+--
+-- TOC entry 3755 (class 0 OID 16492)
+-- Dependencies: 214
+-- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.categories (id, name, "createdAt", "updatedAt") FROM stdin;
+1	Мотошлемы	2021-10-19 12:02:27.634+03	2021-10-19 12:02:27.634+03
+2	Мотоодежда	2021-10-19 12:06:48.96+03	2021-10-19 12:06:48.96+03
+4	Мотоботинки	2021-10-20 21:47:49.672+03	2021-10-20 21:47:49.672+03
+5	Аксессуары	2021-11-01 16:40:44.572+03	2021-11-01 16:40:44.572+03
+6	Мотоперчатки	2021-11-01 16:41:47.389+03	2021-11-01 16:41:47.389+03
+7	Кофры	2021-11-13 15:35:07.299+03	2021-11-13 15:35:07.299+03
+8	Перчатки	2021-11-13 15:46:25.48+03	2021-11-13 15:46:25.48+03
+\.
+
+
+--
+-- TOC entry 3751 (class 0 OID 16466)
+-- Dependencies: 210
+-- Data for Name: customers; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.customers (id, name, phone, email, password, address, role, "createdAt", "updatedAt") FROM stdin;
+33	Пётр	89282354654	user2@mail.ru	$2b$05$9fJnPKpVcx069fpE11qaauwqV11KZCCu.rWZAX2wq0my3uAvtkOGO	г. Анапа ул. Астраханская д.76	USER	2021-11-13 15:49:05.991+03	2021-11-13 16:45:54.51+03
+34	Дмитрий	89982311673	user3@mail.ru	$2b$05$epWYBIzTl67x7jL.ISRto.1qXYD0e6AMHkijrvSGUT4Y8E6AN7ogO	г. Москва 	USER	2021-11-13 16:46:33.411+03	2021-11-13 16:47:03.253+03
+29	Матвей Сергеевич Манько	+79002351721	admin@mail.ru	$2b$05$rh9hrJqnfL8liqd2eYoTWuAjIxPTdgdSFKkYK8dxYiVj92SBftnva	г-к Анапа ул. Удачная	ADMIN	2021-11-07 12:56:39.261+03	2021-11-09 21:28:48.863+03
+31	\N	\N	user@mail.ru	$2b$05$je3RRwMqwdz2IpxFw82QQ.BH0jySCclWHAlxxHHfZ6lZGU1GnrTim	\N	USER	2021-11-10 12:23:14.998+03	2021-11-10 12:23:14.998+03
+32	Перекатов Виктор	89181123354	user1@mail.ru	$2b$05$zJDxQkrpQ5Ph.D11ud.TTuDLXsB9wkvpC8baWpJ521Ky5oHBWI4mu	г. Москва 	USER	2021-11-10 12:27:59.802+03	2021-11-10 12:34:31.12+03
+\.
+
+
+--
+-- TOC entry 3759 (class 0 OID 16517)
+-- Dependencies: 218
+-- Data for Name: order_products; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.order_products (id, "createdAt", "updatedAt", counter, "orderId", "productId") FROM stdin;
+21	2021-11-12 15:08:21.369+03	2021-11-13 15:48:06.927+03	9	\N	\N
+22	2021-11-12 15:08:21.398+03	2021-11-13 15:48:06.945+03	7	\N	\N
+23	2021-11-18 16:09:42.128+03	2021-11-18 16:09:42.128+03	2	35	1
+24	2021-11-18 16:11:16.734+03	2021-11-18 16:11:16.734+03	2	36	1
+25	2021-11-18 16:12:02.756+03	2021-11-18 16:12:02.756+03	2	37	1
+26	2021-11-18 16:22:58.005+03	2021-11-18 16:22:58.005+03	1	38	1
+27	2021-11-18 16:22:58.047+03	2021-11-18 16:22:58.047+03	1	39	2
+28	2021-11-18 16:55:16.352+03	2021-11-18 16:55:16.352+03	4	\N	1
+29	2021-11-18 16:55:16.703+03	2021-11-18 16:55:16.703+03	4	\N	2
+30	2021-11-18 16:55:58.362+03	2021-11-18 16:55:58.362+03	4	50	1
+31	2021-11-18 16:55:58.407+03	2021-11-18 16:55:58.407+03	4	50	2
+32	2021-11-18 16:56:47.398+03	2021-11-18 16:56:47.398+03	4	51	1
+33	2021-11-18 16:56:47.451+03	2021-11-18 16:56:47.451+03	4	51	2
+34	2021-11-19 11:34:54.502+03	2021-11-19 11:34:54.502+03	1	52	1
+\.
+
+
+--
+-- TOC entry 3753 (class 0 OID 16480)
+-- Dependencies: 212
+-- Data for Name: orders; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.orders (id, "createdAt", "updatedAt", "customerId", amount, status) FROM stdin;
+31	2021-11-10 12:23:15.016+03	2021-11-10 12:23:15.016+03	31	\N	Новый
+32	2021-11-10 12:27:59.805+03	2021-11-10 12:27:59.805+03	32	\N	Новый
+33	2021-11-13 15:49:06.005+03	2021-11-13 15:49:06.005+03	33	\N	Новый
+34	2021-11-13 16:46:33.416+03	2021-11-13 16:46:33.416+03	34	\N	Новый
+35	2021-11-18 16:09:41.935+03	2021-11-18 16:09:41.935+03	32	32000	Новый
+36	2021-11-18 16:11:16.484+03	2021-11-18 16:11:16.484+03	32	32000	Новый
+37	2021-11-18 16:12:02.541+03	2021-11-18 16:12:02.541+03	32	32000	Новый
+38	2021-11-18 16:22:57.84+03	2021-11-18 16:22:57.84+03	33	24800	Новый
+39	2021-11-18 16:22:58.044+03	2021-11-18 16:22:58.044+03	33	24800	Новый
+40	2021-11-18 16:45:23.299+03	2021-11-18 16:45:23.299+03	33	24800	Новый
+42	2021-11-18 16:47:52.202+03	2021-11-18 16:47:52.202+03	33	74400	Новый
+44	2021-11-18 16:49:54.055+03	2021-11-18 16:49:54.055+03	33	74400	Новый
+46	2021-11-18 16:52:07.66+03	2021-11-18 16:52:07.66+03	33	74400	Новый
+47	2021-11-18 16:53:50.024+03	2021-11-18 16:53:50.024+03	33	74400	Новый
+49	2021-11-18 16:55:16.364+03	2021-11-18 16:55:16.364+03	33	74400	Новый
+50	2021-11-18 16:55:58.19+03	2021-11-18 16:55:58.19+03	33	99200	Новый
+51	2021-11-18 16:56:47.214+03	2021-11-19 11:31:02.592+03	33	99200	В обработке
+52	2021-11-19 11:34:54.316+03	2021-11-19 11:34:54.316+03	29	11600	Новый
+\.
+
+
+--
+-- TOC entry 3757 (class 0 OID 16501)
+-- Dependencies: 216
+-- Data for Name: products; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.products (id, title, img, description, price, "createdAt", "updatedAt", "categoryId") FROM stdin;
+1	Мотошлем HJC i70 белый	6642dd46-eed4-49f8-b291-f2330101cef1.jpg	Шлем с полной защитой головы	11600	2021-10-20 10:21:10.911+03	2021-10-20 10:21:10.911+03	1
+2	Мотоштаны Rebelhorn	8ac5e9f1-4e05-4c89-a551-02fbb2941640.jpg	Всесезонные текстильные штаны	13200	2021-11-01 21:32:49.505+03	2021-11-01 21:32:49.505+03	2
+\.
+
+
+--
+-- TOC entry 3770 (class 0 OID 0)
+-- Dependencies: 213
+-- Name: categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.categories_id_seq', 8, true);
+
+
+--
+-- TOC entry 3771 (class 0 OID 0)
+-- Dependencies: 209
+-- Name: customers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.customers_id_seq', 34, true);
+
+
+--
+-- TOC entry 3772 (class 0 OID 0)
+-- Dependencies: 217
+-- Name: order_products_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.order_products_id_seq', 34, true);
+
+
+--
+-- TOC entry 3773 (class 0 OID 0)
+-- Dependencies: 211
+-- Name: orders_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.orders_id_seq', 52, true);
+
+
+--
+-- TOC entry 3774 (class 0 OID 0)
+-- Dependencies: 215
+-- Name: products_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.products_id_seq', 2, true);
+
+
+--
+-- TOC entry 3400 (class 2606 OID 28456)
+-- Name: categories categories_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key UNIQUE (name);
+
+
+--
+-- TOC entry 3402 (class 2606 OID 28368)
+-- Name: categories categories_name_key1; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key1 UNIQUE (name);
+
+
+--
+-- TOC entry 3404 (class 2606 OID 28386)
+-- Name: categories categories_name_key10; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key10 UNIQUE (name);
+
+
+--
+-- TOC entry 3406 (class 2606 OID 28388)
+-- Name: categories categories_name_key11; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key11 UNIQUE (name);
+
+
+--
+-- TOC entry 3408 (class 2606 OID 28390)
+-- Name: categories categories_name_key12; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key12 UNIQUE (name);
+
+
+--
+-- TOC entry 3410 (class 2606 OID 28392)
+-- Name: categories categories_name_key13; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key13 UNIQUE (name);
+
+
+--
+-- TOC entry 3412 (class 2606 OID 28394)
+-- Name: categories categories_name_key14; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key14 UNIQUE (name);
+
+
+--
+-- TOC entry 3414 (class 2606 OID 28396)
+-- Name: categories categories_name_key15; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key15 UNIQUE (name);
+
+
+--
+-- TOC entry 3416 (class 2606 OID 28398)
+-- Name: categories categories_name_key16; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key16 UNIQUE (name);
+
+
+--
+-- TOC entry 3418 (class 2606 OID 28400)
+-- Name: categories categories_name_key17; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key17 UNIQUE (name);
+
+
+--
+-- TOC entry 3420 (class 2606 OID 28454)
+-- Name: categories categories_name_key18; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key18 UNIQUE (name);
+
+
+--
+-- TOC entry 3422 (class 2606 OID 28402)
+-- Name: categories categories_name_key19; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key19 UNIQUE (name);
+
+
+--
+-- TOC entry 3424 (class 2606 OID 28370)
+-- Name: categories categories_name_key2; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key2 UNIQUE (name);
+
+
+--
+-- TOC entry 3426 (class 2606 OID 28404)
+-- Name: categories categories_name_key20; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key20 UNIQUE (name);
+
+
+--
+-- TOC entry 3428 (class 2606 OID 28406)
+-- Name: categories categories_name_key21; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key21 UNIQUE (name);
+
+
+--
+-- TOC entry 3430 (class 2606 OID 28408)
+-- Name: categories categories_name_key22; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key22 UNIQUE (name);
+
+
+--
+-- TOC entry 3432 (class 2606 OID 28410)
+-- Name: categories categories_name_key23; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key23 UNIQUE (name);
+
+
+--
+-- TOC entry 3434 (class 2606 OID 28452)
+-- Name: categories categories_name_key24; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key24 UNIQUE (name);
+
+
+--
+-- TOC entry 3436 (class 2606 OID 28412)
+-- Name: categories categories_name_key25; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key25 UNIQUE (name);
+
+
+--
+-- TOC entry 3438 (class 2606 OID 28450)
+-- Name: categories categories_name_key26; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key26 UNIQUE (name);
+
+
+--
+-- TOC entry 3440 (class 2606 OID 28414)
+-- Name: categories categories_name_key27; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key27 UNIQUE (name);
+
+
+--
+-- TOC entry 3442 (class 2606 OID 28448)
+-- Name: categories categories_name_key28; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key28 UNIQUE (name);
+
+
+--
+-- TOC entry 3444 (class 2606 OID 28416)
+-- Name: categories categories_name_key29; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key29 UNIQUE (name);
+
+
+--
+-- TOC entry 3446 (class 2606 OID 28372)
+-- Name: categories categories_name_key3; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key3 UNIQUE (name);
+
+
+--
+-- TOC entry 3448 (class 2606 OID 28446)
+-- Name: categories categories_name_key30; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key30 UNIQUE (name);
+
+
+--
+-- TOC entry 3450 (class 2606 OID 28418)
+-- Name: categories categories_name_key31; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key31 UNIQUE (name);
+
+
+--
+-- TOC entry 3452 (class 2606 OID 28420)
+-- Name: categories categories_name_key32; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key32 UNIQUE (name);
+
+
+--
+-- TOC entry 3454 (class 2606 OID 28422)
+-- Name: categories categories_name_key33; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key33 UNIQUE (name);
+
+
+--
+-- TOC entry 3456 (class 2606 OID 28424)
+-- Name: categories categories_name_key34; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key34 UNIQUE (name);
+
+
+--
+-- TOC entry 3458 (class 2606 OID 28444)
+-- Name: categories categories_name_key35; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key35 UNIQUE (name);
+
+
+--
+-- TOC entry 3460 (class 2606 OID 28426)
+-- Name: categories categories_name_key36; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key36 UNIQUE (name);
+
+
+--
+-- TOC entry 3462 (class 2606 OID 28428)
+-- Name: categories categories_name_key37; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key37 UNIQUE (name);
+
+
+--
+-- TOC entry 3464 (class 2606 OID 28430)
+-- Name: categories categories_name_key38; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key38 UNIQUE (name);
+
+
+--
+-- TOC entry 3466 (class 2606 OID 28442)
+-- Name: categories categories_name_key39; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key39 UNIQUE (name);
+
+
+--
+-- TOC entry 3468 (class 2606 OID 28374)
+-- Name: categories categories_name_key4; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key4 UNIQUE (name);
+
+
+--
+-- TOC entry 3470 (class 2606 OID 28432)
+-- Name: categories categories_name_key40; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key40 UNIQUE (name);
+
+
+--
+-- TOC entry 3472 (class 2606 OID 28440)
+-- Name: categories categories_name_key41; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key41 UNIQUE (name);
+
+
+--
+-- TOC entry 3474 (class 2606 OID 28434)
+-- Name: categories categories_name_key42; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key42 UNIQUE (name);
+
+
+--
+-- TOC entry 3476 (class 2606 OID 28438)
+-- Name: categories categories_name_key43; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key43 UNIQUE (name);
+
+
+--
+-- TOC entry 3478 (class 2606 OID 28436)
+-- Name: categories categories_name_key44; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key44 UNIQUE (name);
+
+
+--
+-- TOC entry 3480 (class 2606 OID 28458)
+-- Name: categories categories_name_key45; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key45 UNIQUE (name);
+
+
+--
+-- TOC entry 3482 (class 2606 OID 28366)
+-- Name: categories categories_name_key46; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key46 UNIQUE (name);
+
+
+--
+-- TOC entry 3484 (class 2606 OID 28460)
+-- Name: categories categories_name_key47; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key47 UNIQUE (name);
+
+
+--
+-- TOC entry 3486 (class 2606 OID 28462)
+-- Name: categories categories_name_key48; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key48 UNIQUE (name);
+
+
+--
+-- TOC entry 3488 (class 2606 OID 28464)
+-- Name: categories categories_name_key49; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key49 UNIQUE (name);
+
+
+--
+-- TOC entry 3490 (class 2606 OID 28376)
+-- Name: categories categories_name_key5; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key5 UNIQUE (name);
+
+
+--
+-- TOC entry 3492 (class 2606 OID 28364)
+-- Name: categories categories_name_key50; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key50 UNIQUE (name);
+
+
+--
+-- TOC entry 3494 (class 2606 OID 28378)
+-- Name: categories categories_name_key6; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key6 UNIQUE (name);
+
+
+--
+-- TOC entry 3496 (class 2606 OID 28380)
+-- Name: categories categories_name_key7; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key7 UNIQUE (name);
+
+
+--
+-- TOC entry 3498 (class 2606 OID 28382)
+-- Name: categories categories_name_key8; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key8 UNIQUE (name);
+
+
+--
+-- TOC entry 3500 (class 2606 OID 28384)
+-- Name: categories categories_name_key9; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_name_key9 UNIQUE (name);
+
+
+--
+-- TOC entry 3502 (class 2606 OID 16497)
+-- Name: categories categories_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3192 (class 2606 OID 28285)
+-- Name: customers customers_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key UNIQUE (email);
+
+
+--
+-- TOC entry 3194 (class 2606 OID 28287)
+-- Name: customers customers_email_key1; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key1 UNIQUE (email);
+
+
+--
+-- TOC entry 3196 (class 2606 OID 28305)
+-- Name: customers customers_email_key10; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key10 UNIQUE (email);
+
+
+--
+-- TOC entry 3198 (class 2606 OID 28307)
+-- Name: customers customers_email_key11; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key11 UNIQUE (email);
+
+
+--
+-- TOC entry 3200 (class 2606 OID 28309)
+-- Name: customers customers_email_key12; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key12 UNIQUE (email);
+
+
+--
+-- TOC entry 3202 (class 2606 OID 28311)
+-- Name: customers customers_email_key13; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key13 UNIQUE (email);
+
+
+--
+-- TOC entry 3204 (class 2606 OID 28313)
+-- Name: customers customers_email_key14; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key14 UNIQUE (email);
+
+
+--
+-- TOC entry 3206 (class 2606 OID 28315)
+-- Name: customers customers_email_key15; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key15 UNIQUE (email);
+
+
+--
+-- TOC entry 3208 (class 2606 OID 28317)
+-- Name: customers customers_email_key16; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key16 UNIQUE (email);
+
+
+--
+-- TOC entry 3210 (class 2606 OID 28319)
+-- Name: customers customers_email_key17; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key17 UNIQUE (email);
+
+
+--
+-- TOC entry 3212 (class 2606 OID 28283)
+-- Name: customers customers_email_key18; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key18 UNIQUE (email);
+
+
+--
+-- TOC entry 3214 (class 2606 OID 28321)
+-- Name: customers customers_email_key19; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key19 UNIQUE (email);
+
+
+--
+-- TOC entry 3216 (class 2606 OID 28289)
+-- Name: customers customers_email_key2; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key2 UNIQUE (email);
+
+
+--
+-- TOC entry 3218 (class 2606 OID 28265)
+-- Name: customers customers_email_key20; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key20 UNIQUE (email);
+
+
+--
+-- TOC entry 3220 (class 2606 OID 28267)
+-- Name: customers customers_email_key21; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key21 UNIQUE (email);
+
+
+--
+-- TOC entry 3222 (class 2606 OID 28269)
+-- Name: customers customers_email_key22; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key22 UNIQUE (email);
+
+
+--
+-- TOC entry 3224 (class 2606 OID 28271)
+-- Name: customers customers_email_key23; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key23 UNIQUE (email);
+
+
+--
+-- TOC entry 3226 (class 2606 OID 28281)
+-- Name: customers customers_email_key24; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key24 UNIQUE (email);
+
+
+--
+-- TOC entry 3228 (class 2606 OID 28273)
+-- Name: customers customers_email_key25; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key25 UNIQUE (email);
+
+
+--
+-- TOC entry 3230 (class 2606 OID 28279)
+-- Name: customers customers_email_key26; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key26 UNIQUE (email);
+
+
+--
+-- TOC entry 3232 (class 2606 OID 28275)
+-- Name: customers customers_email_key27; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key27 UNIQUE (email);
+
+
+--
+-- TOC entry 3234 (class 2606 OID 28277)
+-- Name: customers customers_email_key28; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key28 UNIQUE (email);
+
+
+--
+-- TOC entry 3236 (class 2606 OID 28323)
+-- Name: customers customers_email_key29; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key29 UNIQUE (email);
+
+
+--
+-- TOC entry 3238 (class 2606 OID 28291)
+-- Name: customers customers_email_key3; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key3 UNIQUE (email);
+
+
+--
+-- TOC entry 3240 (class 2606 OID 28325)
+-- Name: customers customers_email_key30; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key30 UNIQUE (email);
+
+
+--
+-- TOC entry 3242 (class 2606 OID 28263)
+-- Name: customers customers_email_key31; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key31 UNIQUE (email);
+
+
+--
+-- TOC entry 3244 (class 2606 OID 28327)
+-- Name: customers customers_email_key32; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key32 UNIQUE (email);
+
+
+--
+-- TOC entry 3246 (class 2606 OID 28329)
+-- Name: customers customers_email_key33; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key33 UNIQUE (email);
+
+
+--
+-- TOC entry 3248 (class 2606 OID 28331)
+-- Name: customers customers_email_key34; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key34 UNIQUE (email);
+
+
+--
+-- TOC entry 3250 (class 2606 OID 28261)
+-- Name: customers customers_email_key35; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key35 UNIQUE (email);
+
+
+--
+-- TOC entry 3252 (class 2606 OID 28333)
+-- Name: customers customers_email_key36; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key36 UNIQUE (email);
+
+
+--
+-- TOC entry 3254 (class 2606 OID 28335)
+-- Name: customers customers_email_key37; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key37 UNIQUE (email);
+
+
+--
+-- TOC entry 3256 (class 2606 OID 28337)
+-- Name: customers customers_email_key38; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key38 UNIQUE (email);
+
+
+--
+-- TOC entry 3258 (class 2606 OID 28339)
+-- Name: customers customers_email_key39; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key39 UNIQUE (email);
+
+
+--
+-- TOC entry 3260 (class 2606 OID 28293)
+-- Name: customers customers_email_key4; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key4 UNIQUE (email);
+
+
+--
+-- TOC entry 3262 (class 2606 OID 28259)
+-- Name: customers customers_email_key40; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key40 UNIQUE (email);
+
+
+--
+-- TOC entry 3264 (class 2606 OID 28257)
+-- Name: customers customers_email_key41; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key41 UNIQUE (email);
+
+
+--
+-- TOC entry 3266 (class 2606 OID 28341)
+-- Name: customers customers_email_key42; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key42 UNIQUE (email);
+
+
+--
+-- TOC entry 3268 (class 2606 OID 28343)
+-- Name: customers customers_email_key43; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key43 UNIQUE (email);
+
+
+--
+-- TOC entry 3270 (class 2606 OID 28255)
+-- Name: customers customers_email_key44; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key44 UNIQUE (email);
+
+
+--
+-- TOC entry 3272 (class 2606 OID 28345)
+-- Name: customers customers_email_key45; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key45 UNIQUE (email);
+
+
+--
+-- TOC entry 3274 (class 2606 OID 28253)
+-- Name: customers customers_email_key46; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key46 UNIQUE (email);
+
+
+--
+-- TOC entry 3276 (class 2606 OID 28347)
+-- Name: customers customers_email_key47; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key47 UNIQUE (email);
+
+
+--
+-- TOC entry 3278 (class 2606 OID 28349)
+-- Name: customers customers_email_key48; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key48 UNIQUE (email);
+
+
+--
+-- TOC entry 3280 (class 2606 OID 28351)
+-- Name: customers customers_email_key49; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key49 UNIQUE (email);
+
+
+--
+-- TOC entry 3282 (class 2606 OID 28295)
+-- Name: customers customers_email_key5; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key5 UNIQUE (email);
+
+
+--
+-- TOC entry 3284 (class 2606 OID 28251)
+-- Name: customers customers_email_key50; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key50 UNIQUE (email);
+
+
+--
+-- TOC entry 3286 (class 2606 OID 28297)
+-- Name: customers customers_email_key6; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key6 UNIQUE (email);
+
+
+--
+-- TOC entry 3288 (class 2606 OID 28299)
+-- Name: customers customers_email_key7; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key7 UNIQUE (email);
+
+
+--
+-- TOC entry 3290 (class 2606 OID 28301)
+-- Name: customers customers_email_key8; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key8 UNIQUE (email);
+
+
+--
+-- TOC entry 3292 (class 2606 OID 28303)
+-- Name: customers customers_email_key9; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_email_key9 UNIQUE (email);
+
+
+--
+-- TOC entry 3294 (class 2606 OID 28179)
+-- Name: customers customers_phone_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key UNIQUE (phone);
+
+
+--
+-- TOC entry 3296 (class 2606 OID 28181)
+-- Name: customers customers_phone_key1; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key1 UNIQUE (phone);
+
+
+--
+-- TOC entry 3298 (class 2606 OID 28199)
+-- Name: customers customers_phone_key10; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key10 UNIQUE (phone);
+
+
+--
+-- TOC entry 3300 (class 2606 OID 28201)
+-- Name: customers customers_phone_key11; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key11 UNIQUE (phone);
+
+
+--
+-- TOC entry 3302 (class 2606 OID 28203)
+-- Name: customers customers_phone_key12; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key12 UNIQUE (phone);
+
+
+--
+-- TOC entry 3304 (class 2606 OID 28205)
+-- Name: customers customers_phone_key13; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key13 UNIQUE (phone);
+
+
+--
+-- TOC entry 3306 (class 2606 OID 28207)
+-- Name: customers customers_phone_key14; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key14 UNIQUE (phone);
+
+
+--
+-- TOC entry 3308 (class 2606 OID 28209)
+-- Name: customers customers_phone_key15; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key15 UNIQUE (phone);
+
+
+--
+-- TOC entry 3310 (class 2606 OID 28211)
+-- Name: customers customers_phone_key16; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key16 UNIQUE (phone);
+
+
+--
+-- TOC entry 3312 (class 2606 OID 28213)
+-- Name: customers customers_phone_key17; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key17 UNIQUE (phone);
+
+
+--
+-- TOC entry 3314 (class 2606 OID 28177)
+-- Name: customers customers_phone_key18; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key18 UNIQUE (phone);
+
+
+--
+-- TOC entry 3316 (class 2606 OID 28215)
+-- Name: customers customers_phone_key19; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key19 UNIQUE (phone);
+
+
+--
+-- TOC entry 3318 (class 2606 OID 28183)
+-- Name: customers customers_phone_key2; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key2 UNIQUE (phone);
+
+
+--
+-- TOC entry 3320 (class 2606 OID 28217)
+-- Name: customers customers_phone_key20; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key20 UNIQUE (phone);
+
+
+--
+-- TOC entry 3322 (class 2606 OID 28163)
+-- Name: customers customers_phone_key21; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key21 UNIQUE (phone);
+
+
+--
+-- TOC entry 3324 (class 2606 OID 28165)
+-- Name: customers customers_phone_key22; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key22 UNIQUE (phone);
+
+
+--
+-- TOC entry 3326 (class 2606 OID 28167)
+-- Name: customers customers_phone_key23; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key23 UNIQUE (phone);
+
+
+--
+-- TOC entry 3328 (class 2606 OID 28175)
+-- Name: customers customers_phone_key24; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key24 UNIQUE (phone);
+
+
+--
+-- TOC entry 3330 (class 2606 OID 28169)
+-- Name: customers customers_phone_key25; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key25 UNIQUE (phone);
+
+
+--
+-- TOC entry 3332 (class 2606 OID 28171)
+-- Name: customers customers_phone_key26; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key26 UNIQUE (phone);
+
+
+--
+-- TOC entry 3334 (class 2606 OID 28173)
+-- Name: customers customers_phone_key27; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key27 UNIQUE (phone);
+
+
+--
+-- TOC entry 3336 (class 2606 OID 28161)
+-- Name: customers customers_phone_key28; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key28 UNIQUE (phone);
+
+
+--
+-- TOC entry 3338 (class 2606 OID 28219)
+-- Name: customers customers_phone_key29; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key29 UNIQUE (phone);
+
+
+--
+-- TOC entry 3340 (class 2606 OID 28185)
+-- Name: customers customers_phone_key3; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key3 UNIQUE (phone);
+
+
+--
+-- TOC entry 3342 (class 2606 OID 28221)
+-- Name: customers customers_phone_key30; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key30 UNIQUE (phone);
+
+
+--
+-- TOC entry 3344 (class 2606 OID 28159)
+-- Name: customers customers_phone_key31; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key31 UNIQUE (phone);
+
+
+--
+-- TOC entry 3346 (class 2606 OID 28223)
+-- Name: customers customers_phone_key32; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key32 UNIQUE (phone);
+
+
+--
+-- TOC entry 3348 (class 2606 OID 28225)
+-- Name: customers customers_phone_key33; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key33 UNIQUE (phone);
+
+
+--
+-- TOC entry 3350 (class 2606 OID 28227)
+-- Name: customers customers_phone_key34; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key34 UNIQUE (phone);
+
+
+--
+-- TOC entry 3352 (class 2606 OID 28157)
+-- Name: customers customers_phone_key35; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key35 UNIQUE (phone);
+
+
+--
+-- TOC entry 3354 (class 2606 OID 28229)
+-- Name: customers customers_phone_key36; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key36 UNIQUE (phone);
+
+
+--
+-- TOC entry 3356 (class 2606 OID 28231)
+-- Name: customers customers_phone_key37; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key37 UNIQUE (phone);
+
+
+--
+-- TOC entry 3358 (class 2606 OID 28233)
+-- Name: customers customers_phone_key38; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key38 UNIQUE (phone);
+
+
+--
+-- TOC entry 3360 (class 2606 OID 28235)
+-- Name: customers customers_phone_key39; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key39 UNIQUE (phone);
+
+
+--
+-- TOC entry 3362 (class 2606 OID 28187)
+-- Name: customers customers_phone_key4; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key4 UNIQUE (phone);
+
+
+--
+-- TOC entry 3364 (class 2606 OID 28155)
+-- Name: customers customers_phone_key40; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key40 UNIQUE (phone);
+
+
+--
+-- TOC entry 3366 (class 2606 OID 28153)
+-- Name: customers customers_phone_key41; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key41 UNIQUE (phone);
+
+
+--
+-- TOC entry 3368 (class 2606 OID 28237)
+-- Name: customers customers_phone_key42; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key42 UNIQUE (phone);
+
+
+--
+-- TOC entry 3370 (class 2606 OID 28239)
+-- Name: customers customers_phone_key43; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key43 UNIQUE (phone);
+
+
+--
+-- TOC entry 3372 (class 2606 OID 28151)
+-- Name: customers customers_phone_key44; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key44 UNIQUE (phone);
+
+
+--
+-- TOC entry 3374 (class 2606 OID 28241)
+-- Name: customers customers_phone_key45; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key45 UNIQUE (phone);
+
+
+--
+-- TOC entry 3376 (class 2606 OID 28149)
+-- Name: customers customers_phone_key46; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key46 UNIQUE (phone);
+
+
+--
+-- TOC entry 3378 (class 2606 OID 28243)
+-- Name: customers customers_phone_key47; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key47 UNIQUE (phone);
+
+
+--
+-- TOC entry 3380 (class 2606 OID 28245)
+-- Name: customers customers_phone_key48; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key48 UNIQUE (phone);
+
+
+--
+-- TOC entry 3382 (class 2606 OID 28247)
+-- Name: customers customers_phone_key49; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key49 UNIQUE (phone);
+
+
+--
+-- TOC entry 3384 (class 2606 OID 28189)
+-- Name: customers customers_phone_key5; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key5 UNIQUE (phone);
+
+
+--
+-- TOC entry 3386 (class 2606 OID 28147)
+-- Name: customers customers_phone_key50; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key50 UNIQUE (phone);
+
+
+--
+-- TOC entry 3388 (class 2606 OID 28191)
+-- Name: customers customers_phone_key6; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key6 UNIQUE (phone);
+
+
+--
+-- TOC entry 3390 (class 2606 OID 28193)
+-- Name: customers customers_phone_key7; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key7 UNIQUE (phone);
+
+
+--
+-- TOC entry 3392 (class 2606 OID 28195)
+-- Name: customers customers_phone_key8; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key8 UNIQUE (phone);
+
+
+--
+-- TOC entry 3394 (class 2606 OID 28197)
+-- Name: customers customers_phone_key9; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key9 UNIQUE (phone);
+
+
+--
+-- TOC entry 3396 (class 2606 OID 16474)
+-- Name: customers customers_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3606 (class 2606 OID 16522)
+-- Name: order_products order_products_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.order_products
+    ADD CONSTRAINT order_products_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3398 (class 2606 OID 16485)
+-- Name: orders orders_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.orders
+    ADD CONSTRAINT orders_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3504 (class 2606 OID 16508)
+-- Name: products products_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3506 (class 2606 OID 28486)
+-- Name: products products_title_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key UNIQUE (title);
+
+
+--
+-- TOC entry 3508 (class 2606 OID 28488)
+-- Name: products products_title_key1; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key1 UNIQUE (title);
+
+
+--
+-- TOC entry 3510 (class 2606 OID 28550)
+-- Name: products products_title_key10; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key10 UNIQUE (title);
+
+
+--
+-- TOC entry 3512 (class 2606 OID 28552)
+-- Name: products products_title_key11; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key11 UNIQUE (title);
+
+
+--
+-- TOC entry 3514 (class 2606 OID 28554)
+-- Name: products products_title_key12; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key12 UNIQUE (title);
+
+
+--
+-- TOC entry 3516 (class 2606 OID 28556)
+-- Name: products products_title_key13; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key13 UNIQUE (title);
+
+
+--
+-- TOC entry 3518 (class 2606 OID 28558)
+-- Name: products products_title_key14; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key14 UNIQUE (title);
+
+
+--
+-- TOC entry 3520 (class 2606 OID 28560)
+-- Name: products products_title_key15; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key15 UNIQUE (title);
+
+
+--
+-- TOC entry 3522 (class 2606 OID 28562)
+-- Name: products products_title_key16; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key16 UNIQUE (title);
+
+
+--
+-- TOC entry 3524 (class 2606 OID 28564)
+-- Name: products products_title_key17; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key17 UNIQUE (title);
+
+
+--
+-- TOC entry 3526 (class 2606 OID 28484)
+-- Name: products products_title_key18; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key18 UNIQUE (title);
+
+
+--
+-- TOC entry 3528 (class 2606 OID 28566)
+-- Name: products products_title_key19; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key19 UNIQUE (title);
+
+
+--
+-- TOC entry 3530 (class 2606 OID 28534)
+-- Name: products products_title_key2; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key2 UNIQUE (title);
+
+
+--
+-- TOC entry 3532 (class 2606 OID 28474)
+-- Name: products products_title_key20; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key20 UNIQUE (title);
+
+
+--
+-- TOC entry 3534 (class 2606 OID 28476)
+-- Name: products products_title_key21; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key21 UNIQUE (title);
+
+
+--
+-- TOC entry 3536 (class 2606 OID 28478)
+-- Name: products products_title_key22; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key22 UNIQUE (title);
+
+
+--
+-- TOC entry 3538 (class 2606 OID 28480)
+-- Name: products products_title_key23; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key23 UNIQUE (title);
+
+
+--
+-- TOC entry 3540 (class 2606 OID 28482)
+-- Name: products products_title_key24; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key24 UNIQUE (title);
+
+
+--
+-- TOC entry 3542 (class 2606 OID 28468)
+-- Name: products products_title_key25; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key25 UNIQUE (title);
+
+
+--
+-- TOC entry 3544 (class 2606 OID 28472)
+-- Name: products products_title_key26; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key26 UNIQUE (title);
+
+
+--
+-- TOC entry 3546 (class 2606 OID 28470)
+-- Name: products products_title_key27; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key27 UNIQUE (title);
+
+
+--
+-- TOC entry 3548 (class 2606 OID 28490)
+-- Name: products products_title_key28; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key28 UNIQUE (title);
+
+
+--
+-- TOC entry 3550 (class 2606 OID 28532)
+-- Name: products products_title_key29; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key29 UNIQUE (title);
+
+
+--
+-- TOC entry 3552 (class 2606 OID 28536)
+-- Name: products products_title_key3; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key3 UNIQUE (title);
+
+
+--
+-- TOC entry 3554 (class 2606 OID 28492)
+-- Name: products products_title_key30; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key30 UNIQUE (title);
+
+
+--
+-- TOC entry 3556 (class 2606 OID 28494)
+-- Name: products products_title_key31; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key31 UNIQUE (title);
+
+
+--
+-- TOC entry 3558 (class 2606 OID 28496)
+-- Name: products products_title_key32; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key32 UNIQUE (title);
+
+
+--
+-- TOC entry 3560 (class 2606 OID 28498)
+-- Name: products products_title_key33; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key33 UNIQUE (title);
+
+
+--
+-- TOC entry 3562 (class 2606 OID 28530)
+-- Name: products products_title_key34; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key34 UNIQUE (title);
+
+
+--
+-- TOC entry 3564 (class 2606 OID 28500)
+-- Name: products products_title_key35; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key35 UNIQUE (title);
+
+
+--
+-- TOC entry 3566 (class 2606 OID 28502)
+-- Name: products products_title_key36; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key36 UNIQUE (title);
+
+
+--
+-- TOC entry 3568 (class 2606 OID 28504)
+-- Name: products products_title_key37; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key37 UNIQUE (title);
+
+
+--
+-- TOC entry 3570 (class 2606 OID 28528)
+-- Name: products products_title_key38; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key38 UNIQUE (title);
+
+
+--
+-- TOC entry 3572 (class 2606 OID 28506)
+-- Name: products products_title_key39; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key39 UNIQUE (title);
+
+
+--
+-- TOC entry 3574 (class 2606 OID 28538)
+-- Name: products products_title_key4; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key4 UNIQUE (title);
+
+
+--
+-- TOC entry 3576 (class 2606 OID 28526)
+-- Name: products products_title_key40; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key40 UNIQUE (title);
+
+
+--
+-- TOC entry 3578 (class 2606 OID 28508)
+-- Name: products products_title_key41; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key41 UNIQUE (title);
+
+
+--
+-- TOC entry 3580 (class 2606 OID 28524)
+-- Name: products products_title_key42; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key42 UNIQUE (title);
+
+
+--
+-- TOC entry 3582 (class 2606 OID 28510)
+-- Name: products products_title_key43; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key43 UNIQUE (title);
+
+
+--
+-- TOC entry 3584 (class 2606 OID 28512)
+-- Name: products products_title_key44; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key44 UNIQUE (title);
+
+
+--
+-- TOC entry 3586 (class 2606 OID 28522)
+-- Name: products products_title_key45; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key45 UNIQUE (title);
+
+
+--
+-- TOC entry 3588 (class 2606 OID 28514)
+-- Name: products products_title_key46; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key46 UNIQUE (title);
+
+
+--
+-- TOC entry 3590 (class 2606 OID 28516)
+-- Name: products products_title_key47; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key47 UNIQUE (title);
+
+
+--
+-- TOC entry 3592 (class 2606 OID 28518)
+-- Name: products products_title_key48; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key48 UNIQUE (title);
+
+
+--
+-- TOC entry 3594 (class 2606 OID 28520)
+-- Name: products products_title_key49; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key49 UNIQUE (title);
+
+
+--
+-- TOC entry 3596 (class 2606 OID 28540)
+-- Name: products products_title_key5; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key5 UNIQUE (title);
+
+
+--
+-- TOC entry 3598 (class 2606 OID 28542)
+-- Name: products products_title_key6; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key6 UNIQUE (title);
+
+
+--
+-- TOC entry 3600 (class 2606 OID 28544)
+-- Name: products products_title_key7; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key7 UNIQUE (title);
+
+
+--
+-- TOC entry 3602 (class 2606 OID 28546)
+-- Name: products products_title_key8; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key8 UNIQUE (title);
+
+
+--
+-- TOC entry 3604 (class 2606 OID 28548)
+-- Name: products products_title_key9; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_title_key9 UNIQUE (title);
+
+
+--
+-- TOC entry 3609 (class 2606 OID 28572)
+-- Name: order_products order_products_orderId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.order_products
+    ADD CONSTRAINT "order_products_orderId_fkey" FOREIGN KEY ("orderId") REFERENCES public.orders(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3610 (class 2606 OID 28577)
+-- Name: order_products order_products_productId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.order_products
+    ADD CONSTRAINT "order_products_productId_fkey" FOREIGN KEY ("productId") REFERENCES public.products(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3607 (class 2606 OID 28354)
+-- Name: orders orders_customerId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.orders
+    ADD CONSTRAINT "orders_customerId_fkey" FOREIGN KEY ("customerId") REFERENCES public.customers(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- TOC entry 3608 (class 2606 OID 28567)
+-- Name: products products_categoryId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT "products_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES public.categories(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+-- Completed on 2021-11-19 13:16:49
+
+--
+-- PostgreSQL database dump complete
+--
+

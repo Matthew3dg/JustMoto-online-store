@@ -1,53 +1,57 @@
-const { OrderProduct } = require('../models/models.js');
+const { OrderProduct, Order } = require('../models/models.js');
 
 class orderController {
-	async create(req, res, next) {
+	async getAll(req, res) {
+		// здесь "findAll" встроенная функция sequelize
+		// осуществляет выборку всех записей(строк) таблицы
+		const orders = await Order.findAll();
+		return res.json(orders);
+	}
+	async createOrder(req, res, next) {
+		// получаем данные для создания заказа из тела запроса с клиента
+		const { customerId, amount } = req.body;
+
+		// создаём заказ пользователя
+		const order = await Order.create({
+			customerId: customerId,
+			amount: amount,
+		});
+
+		// возвращаем объект на клиент
+		return res.json(order);
+	}
+	async updateOrder(req, res, next) {
+		// получаем данные для обновления из тела запроса с клиента
+		const { status, id } = req.body;
+
+		// обновляем статус заказа с заданным ID
+		const updatedOrder = await Order.update(
+			{
+				status: status,
+			},
+			{
+				where: {
+					id: id,
+				},
+			}
+		);
+		// возвращаем объект на клиент
+		return res.json(updatedOrder);
+	}
+
+	async createOrderProduct(req, res, next) {
 		// получаем данные для создания заказа из тела запроса с клиента
 		const { productId, orderId, counter } = req.body;
 
-		let order = {};
-
-		//проверяем есть ли такая запись в базе данных
-		const isExist = await OrderProduct.findOne({
-			where: {
-				productId: productId,
-				orderId: orderId,
-			},
+		// создаём в таблице order_products запись
+		const orderProduct = await OrderProduct.create({
+			productId: productId,
+			orderId: orderId,
+			counter: counter,
 		});
-		console.log('===================================================');
-		console.log(isExist);
-		// если есть
-		if (isExist) {
-			let currentCounter = Number(isExist.counter) + Number(counter);
-			// обновляем данные(увиличиваем количество товара)
-			order = await OrderProduct.update(
-				{
-					counter: currentCounter,
-				},
-				{
-					where: {
-						productId: productId,
-						orderId: orderId,
-					},
-				}
-			);
 
-			// если нету
-		} else {
-			// создаём в таблице order_products запись
-			order = await OrderProduct.create({
-				productId: productId,
-				orderId: orderId,
-				counter: counter,
-			});
-		}
 		// возвращаем объект на клиент
-		return res.json(order);
-
-		//получаем данные о созданном заказе
-		// const returnCreatedOrder = await OrderProduct.findAll({
-		// 	where: { orderId: orderId },
-		// });
+		return res.json(orderProduct);
 	}
 }
 module.exports = new orderController();

@@ -11,7 +11,9 @@ export default class UserStore {
 			// email: '',
 			// password: '',
 			// address: '',
-			role: jwt_decode(localStorage.getItem('token')).role,
+			role: localStorage.getItem('token')
+				? jwt_decode(localStorage.getItem('token')).role
+				: false,
 		};
 		//для того чтобы mobx следил за сосотянием переменных и при изменении перерисовывал компоненты
 		makeAutoObservable(this);

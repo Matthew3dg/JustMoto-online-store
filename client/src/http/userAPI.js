@@ -40,7 +40,7 @@ export const login = async (email, password) => {
 };
 
 // функция "check" вызывается при обновлении страницы
-// и проверяет токе на валидность
+// и проверяет токен на валидность
 // если токен не валиден, то пользователь разлогинивается
 export const check = async () => {
 	const { data } = await $authHost.get('api/customer/auth');

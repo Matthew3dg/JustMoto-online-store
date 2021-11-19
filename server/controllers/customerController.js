@@ -63,8 +63,8 @@ class CustomerController {
 			role,
 			password: hashPassword,
 		});
-		// создаём заказ пользователя
-		const order = await Order.create({ customerId: customer.id });
+		// // создаём заказ пользователя
+		// const order = await Order.create({ customerId: customer.id });
 
 		const token = generateJwt(customer.id, customer.email, customer.role);
 		// возвращаем токен на клиент

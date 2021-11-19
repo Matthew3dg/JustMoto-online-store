@@ -3,7 +3,6 @@ import { $authHost, $host } from './index.js';
 //получение и создание категорий
 export const createCategory = async (name) => {
 	const { data } = await $authHost.post('api/category', name);
-	// data - обьект содержащий поле token
 	return data;
 };
 export const fetchCategories = async () => {
@@ -14,7 +13,6 @@ export const fetchCategories = async () => {
 //получение и создание товаров
 export const createProduct = async (name) => {
 	const { data } = await $authHost.post('api/product', name);
-	// data - обьект содержащий поле token
 	return data;
 };
 export const fetchProducts = async (categoryId) => {

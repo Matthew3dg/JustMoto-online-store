@@ -57,13 +57,6 @@ const Catalog = observer(() => {
 							</button>
 						</aside>
 						<main className="catalog__mainContent">
-							<div className="catalog__sort">
-								<div className="catalog__sortLabel">Сортировать по:</div>
-								<select name="sort" id="catalogSort">
-									<option value="increment">Возрастанию цены</option>
-									<option value="decrement">Убыванию цены</option>
-								</select>
-							</div>
 							<div className="catalog__wrapper">
 								<div className="catalog__cards">
 									{/* контейнер для товаров каталога*/}
