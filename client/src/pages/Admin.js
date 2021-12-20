@@ -18,6 +18,7 @@ const Admin = observer(() => {
 		fetchCategories().then((categories) => (product._categories = categories));
 		fetchOrders().then((orders) => setOrders(orders));
 	}, []);
+
 	console.log(orders);
 	// состояние для добавления категории
 	const [value, setValue] = useState('');
@@ -35,12 +36,6 @@ const Admin = observer(() => {
 		});
 	};
 	const addProduct = () => {
-		console.log(title);
-		console.log(file);
-		console.log(description);
-		console.log(price);
-		console.log(categ);
-
 		const formData = new FormData();
 		formData.append('title', title);
 		formData.append('img', file);

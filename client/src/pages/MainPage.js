@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Context } from '../index.js';
 import { observer } from 'mobx-react-lite';
 
@@ -10,9 +10,13 @@ import clothing from '../components/img/main/clothing.jpg';
 import boots from '../components/img/main/boots.jpg';
 import accessories from '../components/img/main/accessories.jpg';
 import ProductCard from '../components/ProductCard';
+import { fetchProducts } from '../http/productAPI';
 
 const MainPage = observer(() => {
 	const { product } = useContext(Context);
+	useEffect(() => {
+		fetchProducts().then((products) => (product._products = products));
+	}, []);
 	return (
 		<div>
 			<main className="content">

@@ -37,6 +37,7 @@ const ProductPage = () => {
 							<div className="productBody__headerRow">
 								<div className="productBody__headerColumn">
 									<div className="productBody__price">{product.price} руб.</div>
+
 									<div className="productBody__priceLable priceLable">
 										цена за шт
 									</div>
